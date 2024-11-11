@@ -17,9 +17,21 @@
     "@angular/platform-browser": "~18.2.0",
     "@angular/platform-browser-dynamic": "~18.2.0",
     "@angular/router": "~18.2.0",
+    "@invoice-manager/api-typescript-angular-client": "file:../invoice-manager-api/invoice-manager-api-typescript-angular-client/target/generated-sources/openapi/dist/invoice-manager-api-typescript-angular-client-1.0.0-SNAPSHOT.tgz",
+    "angular-oauth2-oidc": "^17.0.2",
+    "@fullcalendar/angular": "^6.0.3",
+    "@fullcalendar/core": "^6.0.3",
+    "@fullcalendar/daygrid": "^6.0.3",
+    "@fullcalendar/interaction": "^6.0.3",
+    "@fullcalendar/timegrid": "^6.0.3",
+    "chart.js": "^3.3.2",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.18.11",
+    "quill": "^1.3.7",
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.3",
-    "@invoice-manager/api-typescript-angular-client": "file:../invoice-manager-api/invoice-manager-api-typescript-angular-client/target/generated-sources/openapi/dist/invoice-manager-api-typescript-angular-client-1.0.0-SNAPSHOT.tgz"
+    "prismjs": "^1.29.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~18.2.0",

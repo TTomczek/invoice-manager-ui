@@ -1,0 +1,14 @@
+<div class="layout-wrapper" [ngClass]="containerClass">
+    <im-topbar></im-topbar>
+    <div class="layout-sidebar">
+        <im-sidebar></im-sidebar>
+    </div>
+    <div class="layout-main-container">
+        <div class="layout-main">
+            <router-outlet></router-outlet>
+        </div>
+        <im-footer></im-footer>
+    </div>
+    <im-config></im-config>
+    <div class="layout-mask"></div>
+</div>
