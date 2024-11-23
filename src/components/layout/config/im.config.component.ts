@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { LayoutService } from '../services/im.layout.service';
@@ -13,15 +13,13 @@ import { MenuService } from '../menu/im.menu.service';
     templateUrl: './im.config.component.html',
     standalone: true,
     imports: [
-        SidebarModule,
-        ButtonModule,
-        NgFor,
-        NgClass,
-        NgIf,
-        RadioButtonModule,
-        FormsModule,
-        InputSwitchModule,
-    ],
+    SidebarModule,
+    ButtonModule,
+    NgClass,
+    RadioButtonModule,
+    FormsModule,
+    InputSwitchModule
+],
 })
 export class IMConfigComponent {
     @Input() minimal = false;

@@ -6,7 +6,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { Button } from 'primeng/button';
 import { AuthentificationService } from '../../service/authentification/authentification.service';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   standalone: true,
@@ -14,9 +14,8 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     TableModule,
     MenubarModule,
-    Button,
-    CommonModule
-  ],
+    Button
+],
   selector: 'im-app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

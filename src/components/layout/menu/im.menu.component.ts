@@ -1,23 +1,21 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ImMenuitemComponent } from '../menuitem/im.menuitem.component';
 import { LayoutService } from '../services/im.layout.service';
 
 @Component({
-    selector: 'im-menu',
-    templateUrl: './im.menu.component.html',
-    standalone: true,
-    imports: [NgFor, NgIf, ImMenuitemComponent]
+  selector: 'im-menu',
+  templateUrl: './im.menu.component.html',
+  standalone: true,
+  imports: [ImMenuitemComponent],
 })
 export class IMMenuComponent implements OnInit {
 
-    model: any[] = [];
+    menuItems: any[] = [];
 
     constructor(public layoutService: LayoutService) { }
 
     ngOnInit() {
-        this.model = [
+        this.menuItems = [
             {
                 label: 'Home',
                 items: [

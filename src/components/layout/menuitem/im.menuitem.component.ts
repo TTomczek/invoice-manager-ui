@@ -22,7 +22,7 @@ import {
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { RippleModule } from 'primeng/ripple';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { LayoutService } from '../services/im.layout.service';
 import { MenuService } from '../menu/im.menu.service';
 
@@ -42,7 +42,7 @@ import { MenuService } from '../menu/im.menu.service';
         ])
     ],
     standalone: true,
-    imports: [NgIf, RippleModule, NgClass, RouterLinkActive, RouterLink, NgFor]
+    imports: [RippleModule, NgClass, RouterLinkActive, RouterLink]
 })
 export class ImMenuitemComponent implements OnInit, OnDestroy {
 
