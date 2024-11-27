@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { AuthentificationService } from './authentification.service';
+import { AuthenticationService } from './authentication.service';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { AppState } from '../../state/app-state.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthentificationImplService implements AuthentificationService {
+export class AuthenticationImplService implements AuthenticationService {
   private oauthService: OAuthService = inject(OAuthService);
   private appState: AppState = inject(AppState);
 
@@ -47,5 +47,12 @@ export class AuthentificationImplService implements AuthentificationService {
           break;
       }
     });
+  }
+
+  public logout(): void {
+    this.oauthService.logOut();
+    this.appState.setIsLoggedIn(false);
+    this.appState.setUserName('');
+    this.appState.setUserRoles([]);
   }
 }

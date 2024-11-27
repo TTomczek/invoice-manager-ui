@@ -1,0 +1,48 @@
+<div class="grid">
+  <p-messages />
+  <div class="col-12">
+
+    <div class="card">
+      <p-table [value]="salesTaxFacade.getSalesTaxes()" [paginator]="true" [selection]="selectedEntity"
+               (onRowSelect)="selectEntity($event)" (onRowUnselect)="unselectEntity()"
+               selectionMode="single" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{ 'salestax.table.header.name' | translate }}</th>
+            <th>{{ 'salestax.table.header.rate' | translate }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tax>
+          <tr [pSelectableRow]="tax">
+            <td>{{ tax.name }}</td>
+            <td>{{ tax.rate }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="card col-12">
+      <form class="col-12">
+        <div class="flex flex-column gap-2">
+          <label for="name">{{ 'salestax.form.label.name' | translate }}</label>
+          <input pInputText type="text" class="form-control" id="name" [(ngModel)]="selectedEntity.name" name="name"
+                 required>
+          <label for="rate">{{ 'salestax.form.label.rate' | translate }}</label>
+          <input pInputText type="number" step="0.1" class="form-control" id="rate" [(ngModel)]="selectedEntity.rate"
+                 name="rate" required>
+        </div>
+        @if (selectedEntity.id) {
+          <button pButton type="button" class="btn btn-primary"
+                  (click)="updateSalesTax(selectedEntity)">{{ 'salestax.form.button.update' | translate }}
+          </button>
+          <button pButton type="button" class="btn btn-danger"
+                  (click)="deleteSalesTax(selectedEntity)">{{ 'salestax.form.button.delete' | translate }}
+          </button>
+        } @else {
+          <button pButton type="button" class="btn btn-primary"
+                  (click)="createSalesTax(selectedEntity)">{{ 'salestax.form.button.create' | translate }}
+          </button>
+        }
+      </form>
+    </div>
+  </div>
+</div>

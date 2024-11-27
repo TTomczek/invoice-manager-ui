@@ -1,24 +1,31 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { LayoutService } from '../services/im.layout.service';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { LayoutService } from '../services/im.layout.service';
+import { AuthenticationService } from '../../../services/authentification/authentication.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-    selector: 'im-topbar',
-    templateUrl: './im.topbar.component.html',
-    standalone: true,
-    imports: [RouterLink, NgClass]
+  selector: 'im-topbar',
+  templateUrl: './im.topbar.component.html',
+  imports: [NgClass, RouterLink, TranslatePipe],
+  standalone: true,
 })
 export class IMTopBarComponent {
+  items!: MenuItem[];
 
-    items!: MenuItem[];
+  private readonly authenticationService = inject(AuthenticationService);
 
-    @ViewChild('menubutton') menuButton!: ElementRef;
+  @ViewChild('menubutton') menuButton!: ElementRef;
 
-    @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
+  @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
 
-    @ViewChild('topbarmenu') menu!: ElementRef;
+  @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService) { }
+  constructor(public layoutService: LayoutService) {}
+
+  protected signout() {
+    this.authenticationService.logout();
+  }
 }

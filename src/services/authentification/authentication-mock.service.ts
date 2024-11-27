@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { AuthentificationService } from './authentification.service';
+import { AuthenticationService } from './authentication.service';
 import { AppState } from '../../state/app-state.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthentificationMockService implements AuthentificationService {
+export class AuthenticationMockService implements AuthenticationService {
   private appState: AppState = inject(AppState);
 
   public init(): void {
@@ -13,5 +13,11 @@ export class AuthentificationMockService implements AuthentificationService {
     this.appState.setIsLoggedIn(true);
     this.appState.setUserName('Max Mustermann');
     this.appState.setUserRoles(['viewer', 'manager']);
+  }
+
+  public logout(): void {
+    this.appState.setIsLoggedIn(false);
+    this.appState.setUserName('');
+    this.appState.setUserRoles([]);
   }
 }
