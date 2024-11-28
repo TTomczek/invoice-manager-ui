@@ -1,0 +1,12 @@
+{
+    "salestax": {
+        "update": {
+            "converter": {
+                "error": {
+                    "title": "",
+                    "details": ""
+                }
+            }
+        }
+    }
+}

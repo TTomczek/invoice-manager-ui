@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ImMenuitemComponent } from '../menuitem/im.menuitem.component';
 import { LayoutService } from '../services/im.layout.service';
 import { MenuItem } from './menu-item.model';
@@ -9,41 +9,40 @@ import { MenuItem } from './menu-item.model';
   standalone: true,
   imports: [ImMenuitemComponent],
 })
-export class IMMenuComponent implements OnInit {
+export class IMMenuComponent {
+  private layoutService = inject(LayoutService);
 
-    menuItems: MenuItem[] = [];
-
-    constructor(public layoutService: LayoutService) { }
-
-    ngOnInit() {
-        this.menuItems = [
-            {
-                label: '',
-                // routerLink: ['/dashboard'],
-                items: [
-                    {
-                        label: 'Dashboard',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/dashboard'],
-
-                    },
-                    {
-                        label: 'Invoices',
-                        icon: 'pi pi-fw pi-file',
-                        routerLink: ['/invoices'],
-                    },
-                    {
-                        label: 'Customer',
-                        icon: 'pi pi-fw pi-user',
-                        routerLink: ['/customer'],
-                    },
-                    {
-                        label: 'Taxes',
-                        icon: 'pi pi-fw pi-money-bill',
-                        routerLink: ['/sales-taxes'],
-                    }
-                ]
-            }
-        ];
-    }
+  menuItems: MenuItem[] = [
+    {
+      label: '',
+      // routerLink: ['/dashboard'],
+      items: [
+        {
+          label: 'sidebar.items.dashboard',
+          icon: 'pi pi-fw pi-home',
+          routerLink: ['/dashboard'],
+        },
+        {
+          label: 'sidebar.items.invoices',
+          icon: 'pi pi-fw pi-file',
+          routerLink: ['/invoices'],
+        },
+        {
+          label: 'sidebar.items.business-partners',
+          icon: 'pi pi-fw pi-user',
+          routerLink: ['/business-partners'],
+        },
+        {
+          label: 'sidebar.items.invoice-templates',
+          icon: 'pi pi-fw pi-file-pdf',
+          routerLink: ['/invoice-templates'],
+        },
+        {
+          label: 'sidebar.items.sales-taxes',
+          icon: 'pi pi-fw pi-money-bill',
+          routerLink: ['/sales-taxes'],
+        },
+      ],
+    },
+  ];
 }

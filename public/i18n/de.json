@@ -1,0 +1,56 @@
+{
+    "sidebar": {
+        "items": {
+            "dashboard": "Dashboard",
+            "invoices": "Rechnungen",
+            "business-partners": "Kunden",
+            "invoice-templates": "Rechnungsvorlagen",
+            "sales-taxes": "Steuersätze"
+        }
+    },
+    "salestax": {
+        "table": {
+            "header": {
+                "name": "Name",
+                "rate": "Steuersatz"
+            }
+        },
+        "form": {
+            "label": {
+                "name": "Name",
+                "rate": "Steuersatz"
+            },
+            "button": {
+                "create": "Erstellen",
+                "update": "Aktualisieren",
+                "delete": "Löschen"
+            }
+        }
+    },
+    "invoicetemplate": {
+        "table": {
+            "header": {
+                "name": "Name",
+                "margintopfirst": "Abstand oben (erste Seite) in mm",
+                "marginbottomfirst": "Abstand unten (erste Seite) in mm",
+                "margintopother": "Abstand oben (andere Seiten) in mm",
+                "marginbottomother": "Abstand unten (andere Seiten) in mm"
+            }
+        },
+        "form": {
+            "label": {
+                "name": "Name",
+                "margintopfirstpage": "Abstand oben (erste Seite) in mm",
+                "marginbottomfirstpage": "Abstand unten (erste Seite) in mm",
+                "margintopotherpage": "Abstand oben (andere Seiten) in mm",
+                "marginbottomotherpage": "Abstand unten (andere Seiten) in mm",
+                "file": "Hintergrundbild (PDF)"
+            },
+            "button": {
+                "create": "Erstellen",
+                "update": "Aktualisieren",
+                "delete": "Löschen"
+            }
+        }
+    }
+}
