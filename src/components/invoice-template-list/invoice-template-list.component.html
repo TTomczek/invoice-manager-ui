@@ -1,1 +1,76 @@
-<p>invoice-template-list works!</p>
+<div class="grid">
+    <div class="col-12">
+
+        <div class="card">
+            <p-table [value]="invoiceTemplateFacade.getInvoiceTemplates()" [paginator]="true" [selection]="selectedEntity"
+                     (onRowSelect)="selectEntity($event)" (onRowUnselect)="unselectEntity()"
+                     selectionMode="single" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>{{ 'invoicetemplate.table.header.name' | translate }}</th>
+                        <th>{{ 'invoicetemplate.table.header.margintopfirst' | translate }}</th>
+                        <th>{{ 'invoicetemplate.table.header.marginbottomfirst' | translate }}</th>
+                        <th>{{ 'invoicetemplate.table.header.margintopother' | translate }}</th>
+                        <th>{{ 'invoicetemplate.table.header.marginbottomfirst' | translate }}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-template>
+                    <tr [pSelectableRow]="template">
+                        <td>{{ template.name }}</td>
+                        <td>{{ template.marginTopFirstPage }}</td>
+                        <td>{{ template.marginBottomFirstPage }}</td>
+                        <td>{{ template.marginTopOtherPages }}</td>
+                        <td>{{ template.marginBottomOtherPages }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <div class="card col-12">
+            <form class="col-12">
+                <div class="flex flex-column gap-2">
+                    <label for="name">{{ 'invoicetemplate.form.label.name' | translate }}</label>
+                    <input pInputText type="text" class="form-control" id="name" [(ngModel)]="selectedEntity.name"
+                           name="name"
+                           required>
+                    <label for="firstTop">{{ 'invoicetemplate.form.label.margintopfirstpage' | translate }}</label>
+                    <input pInputText type="number" step="5" class="form-control" id="firstTop"
+                           [(ngModel)]="selectedEntity.marginTopFirstPage"
+                           name="firstTop" required>
+                    <label
+                        for="firstBottom">{{ 'invoicetemplate.form.label.marginbottomfirstpage' | translate }}</label>
+                    <input pInputText type="number" step="5" class="form-control" id="firstBottom"
+                           [(ngModel)]="selectedEntity.marginBottomFirstPage"
+                           name="firstBottom" required>
+                    <label for="otherTop">{{ 'invoicetemplate.form.label.margintopotherpage' | translate }}</label>
+                    <input pInputText type="number" step="5" class="form-control" id="otherTop"
+                           [(ngModel)]="selectedEntity.marginTopOtherPages"
+                           name="otherTop" required>
+                    <label for="otherBottom">{{ 'invoicetemplate.form.label.marginbottomotherpage' | translate }}</label>
+                    <input pInputText type="number" step="5" class="form-control" id="otherBottom"
+                           [(ngModel)]="selectedEntity.marginBottomOtherPages"
+                           name="otherBottom" required>
+                    <label for="file">{{ 'invoicetemplate.form.label.file' | translate}}</label>
+                    <p-fileUpload
+                        #backgroundPdfFileUpload
+                        name="file"
+                        mode="basic"
+                        (onSelect)="onUpload($event)"
+                        accept=".pdf"
+                        [maxFileSize]="maxFileSize" />
+                </div>
+                @if (selectedEntity.id) {
+                    <button pButton type="button" class="btn btn-primary"
+                            (click)="updateInvoiceTemplate(selectedEntity)">{{ 'invoicetemplate.form.button.update' | translate }}
+                    </button>
+                    <button pButton type="button" class="btn btn-danger"
+                            (click)="deleteInvoiceTemplate(selectedEntity)">{{ 'invoicetemplate.form.button.delete' | translate }}
+                    </button>
+                } @else {
+                    <button pButton type="button" class="btn btn-primary"
+                            (click)="createInvoiceTemplate(selectedEntity)">{{ 'salestax.form.button.create' | translate }}
+                    </button>
+                }
+            </form>
+        </div>
+    </div>
+</div>

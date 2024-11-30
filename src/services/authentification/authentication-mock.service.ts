@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
-import { AppState } from '../../state/app-state.service';
+import { AuthState } from '../../state/app-state.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationMockService implements AuthenticationService {
-  private appState: AppState = inject(AppState);
+  private appState: AuthState = inject(AuthState);
 
   public init(): void {
     console.log('Using mock authentification service');

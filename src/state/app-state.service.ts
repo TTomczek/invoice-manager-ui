@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AppState {
+export class AuthState {
   private isLoggedIn = signal(false);
   private userName = signal('');
   private userRoles = signal<string[]>([]);

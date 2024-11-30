@@ -1,70 +1,62 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { SalesTaxService } from './sales-tax.service';
 import { SalesTaxesService } from '@invoice-manager/api-typescript-angular-client';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { SalesTax } from '../../models/sales-tax.model';
 import { SalesTaxConverterService } from '../../models/converter/sales-tax-converter.service';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class SalesTaxImplService implements SalesTaxService {
+    private salesTaxApi = inject(SalesTaxesService);
+    private salesTaxConverter = inject(SalesTaxConverterService);
 
-  private salesTaxApi = inject(SalesTaxesService);
-  private salesTaxConverter = inject(SalesTaxConverterService);
-
-  public createSalesTax(salesTax: SalesTax) {
-    const salesTaxDto = this.salesTaxConverter.toDTO(salesTax);
-    if (!salesTaxDto) {
-      return signal(undefined);
-    }
-    const createdSalesTaxDto = toSignal(this.salesTaxApi.createSalesTax(salesTaxDto))();
-    const createdSalesTax = this.salesTaxConverter.toEntity(createdSalesTaxDto);
-    return signal(createdSalesTax);
-  }
-
-  public deleteSalesTax(salesTaxId: number) {
-    const deletedSalesTaxDto = toSignal(this.salesTaxApi.deleteSalesTaxById(salesTaxId))();
-    if (!deletedSalesTaxDto) {
-      return signal(undefined);
-    }
-    const deletedSalesTax = this.salesTaxConverter.toEntity(deletedSalesTaxDto);
-
-    return signal(deletedSalesTax);
-  }
-
-  public getAllSalesTaxes() {
-    const salesTaxDtos = toSignal(this.salesTaxApi.getAllSalesTaxes())();
-    if (!salesTaxDtos) {
-      return signal([]);
-    }
-    const salesTaxes: SalesTax[] | undefined = [];
-    salesTaxDtos.forEach(salesTaxDto => {
-      const salesTax = this.salesTaxConverter.toEntity(salesTaxDto);
-      if (salesTax) {
-        salesTaxes.push(salesTax);
-      }
-    });
-    return signal(salesTaxes);
-  }
-
-  public getSalesTaxById(salesTaxId: number) {
-    const salesTaxDto = toSignal(this.salesTaxApi.getSalesTaxById(salesTaxId))();
-    if (!salesTaxDto) {
-      return signal(undefined);
+    public async createSalesTax(salesTax: SalesTax): Promise<SalesTax | undefined> {
+        const salesTaxDto = this.salesTaxConverter.toDTO(salesTax);
+        if (!salesTaxDto) {
+            return Promise.reject('converter failed');
+        }
+        return lastValueFrom(this.salesTaxApi.createSalesTax(salesTaxDto))
+            .then((createdSalesTaxDto) => {
+                if (!createdSalesTaxDto) {
+                    return undefined;
+                }
+                return this.salesTaxConverter.toEntity(createdSalesTaxDto);
+            });
     }
 
-    const salesTax = this.salesTaxConverter.toEntity(salesTaxDto);
-    return signal(salesTax);
-  }
-
-  public updateSalesTax(salesTaxId: number, salesTax: SalesTax) {
-    const salesTaxDto = this.salesTaxConverter.toDTO(salesTax);
-    if (!salesTaxDto) {
-      return signal(undefined);
+    public async deleteSalesTax(salesTaxId: number): Promise<SalesTax | undefined> {
+        return lastValueFrom(this.salesTaxApi.deleteSalesTaxById(salesTaxId)).then((deletedSalesTaxDto) => {
+          return this.salesTaxConverter.toEntity(deletedSalesTaxDto);
+        });
     }
-    const updatedSalesTaxDto = toSignal(this.salesTaxApi.updateSalesTaxById(salesTaxId, salesTaxDto))();
-    const updatedSalesTax = this.salesTaxConverter.toEntity(updatedSalesTaxDto);
-    return signal(updatedSalesTax);
-  }
+
+    public async getAllSalesTaxes(): Promise<SalesTax[] | undefined> {
+        return lastValueFrom(this.salesTaxApi.getAllSalesTaxes()).then((salesTaxDtos) => {
+            return salesTaxDtos.map((salesTaxDto) => {
+                return this.salesTaxConverter.toEntity(salesTaxDto);
+            }).filter((salesTax) => salesTax !== undefined);
+        });
+    }
+
+    public async getSalesTaxById(salesTaxId: number) {
+        return lastValueFrom(this.salesTaxApi.getSalesTaxById(salesTaxId)).then((salesTaxDto) => {
+            return this.salesTaxConverter.toEntity(salesTaxDto);
+        });
+    }
+
+    public async updateSalesTax(salesTaxId: number, salesTax: SalesTax): Promise<SalesTax | undefined> {
+        const salesTaxDto = this.salesTaxConverter.toDTO(salesTax);
+        if (!salesTaxDto) {
+            return Promise.reject('converter failed');
+        }
+        return lastValueFrom(this.salesTaxApi.updateSalesTaxById(salesTaxId, salesTaxDto))
+            .then((updatedSalesTaxDto) => {
+                if (!updatedSalesTaxDto) {
+                    return undefined;
+                }
+                return this.salesTaxConverter.toEntity(updatedSalesTaxDto);
+            });
+    }
 }

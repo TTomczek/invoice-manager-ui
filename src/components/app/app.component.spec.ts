@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { IMAppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { AuthentificationMockService } from '../../service/authentification/authentification-mock.service';
-import { AuthentificationService } from '../../service/authentification/authentification.service';
+import { AuthenticationMockService } from '../../services/authentification/authentication-mock.service';
+import { AuthenticationService } from '../../services/authentification/authentication.service';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { provideHttpClient } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, RouterModule.forRoot([])],
+      imports: [IMAppComponent, RouterModule.forRoot([])],
       providers: [
         {
-          provide: AuthentificationService,
-          useClass: AuthentificationMockService,
+          provide: AuthenticationService,
+          useClass: AuthenticationMockService,
         },
         provideOAuthClient(),
         provideHttpClient(),
@@ -22,7 +22,7 @@ describe('AppComponent', () => {
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.createComponent(IMAppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
@@ -31,7 +31,7 @@ describe('AppComponent', () => {
   });
 
   it(`should have as title 'invoice-manager-ui'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.createComponent(IMAppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('invoice-manager-ui');
   });
