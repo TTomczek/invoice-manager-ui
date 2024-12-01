@@ -10,6 +10,7 @@ import { InvoiceTemplateFacade } from '../../services/invoice-template/invoice-t
 import { InvoiceTemplate } from '../../models/invoice-template.model';
 import { FileSelectEvent, FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { environment } from '../../environments/environment';
+import { TranslatableMessageService } from '../../services/translatable-message.service';
 
 @Component({
     selector: 'im-invoice-template-list',
@@ -29,9 +30,11 @@ import { environment } from '../../environments/environment';
 })
 export class InvoiceTemplateListComponent {
     protected invoiceTemplateFacade = inject(InvoiceTemplateFacade);
-    protected maxFileSize = environment.maxFileSize;
+    private messageService = inject(TranslatableMessageService);
 
+    protected maxFileSize = environment.maxFileSize;
     private fileToUpload: File | null = null;
+
 
     protected selectedEntity: InvoiceTemplate = {
         id: undefined,
@@ -66,14 +69,14 @@ export class InvoiceTemplateListComponent {
     }
 
     async createInvoiceTemplate(invoiceTemplate: InvoiceTemplate) {
-        console.log('createInvoiceTemplate', invoiceTemplate);
         if (this.fileToUpload) {
             const backgroundPdfId = await this.invoiceTemplateFacade.uploadBackgroundPdf(this.fileToUpload);
             invoiceTemplate.backgroundPdf = backgroundPdfId.toString();
-            console.log('backgroundPdfId', backgroundPdfId);
             this.invoiceTemplateFacade.createInvoiceTemplate(invoiceTemplate);
             this.unselectEntity();
             this.emptyFileToUpload();
+        } else {
+            this.messageService.add({ key: 'error.invoiceTemplate.create.missing-file', severity: 'error' });
         }
     }
 
@@ -98,7 +101,15 @@ export class InvoiceTemplateListComponent {
 
     onUpload(event: FileSelectEvent) {
         this.fileToUpload = event.files[0];
-        console.log(this.fileToUpload.name);
+    }
+
+    downloadTemplate(id: string) {
+        const fileId = parseInt(id);
+        if (Number.isNaN(fileId)) {
+            this.messageService.add({ key: 'error.invoiceTemplate.download', severity: 'error' });
+            return;
+        }
+        this.invoiceTemplateFacade.downloadBackgroundPdf(fileId);
     }
 
     private emptyFileToUpload() {

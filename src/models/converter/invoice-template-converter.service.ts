@@ -3,39 +3,41 @@ import { InvoiceTemplateDTO } from '@invoice-manager/api-typescript-angular-clie
 import { InvoiceTemplate } from '../invoice-template.model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class InvoiceTemplateConverterService {
+    toEntity(dto: InvoiceTemplateDTO | undefined): InvoiceTemplate | undefined {
+        if (!dto) {
+            return undefined;
+        }
 
-  toEntity(dto: InvoiceTemplateDTO | undefined): InvoiceTemplate | undefined {
-    if (!dto) {
-      return undefined;
+        const entity: InvoiceTemplate = {
+            id: dto.id,
+            name: dto.name ?? '',
+            backgroundPdf: dto.fileId?.toString() ?? '',
+            marginTopFirstPage: dto.marginTopFirstPage ?? 0,
+            marginBottomFirstPage: dto.marginBottomFirstPage ?? 0,
+            marginTopOtherPages: dto.marginTopOtherPages ?? 0,
+            marginBottomOtherPages: dto.marginBottomOtherPages ?? 0,
+        };
+        return entity;
     }
 
-    return {
-      id: dto.id,
-      name: dto.name ?? '',
-      backgroundPdf: dto.fileId?.toString() ?? '',
-      marginTopFirstPage: dto.marginTopFirstPage ?? 0,
-      marginBottomFirstPage: dto.marginBottomFirstPage ?? 0,
-      marginTopOtherPages: dto.marginTopOtherPages ?? 0,
-      marginBottomOtherPages: dto.marginBottomOtherPages ?? 0,
-    };
-  }
+    toDTO(entity: InvoiceTemplate | undefined): InvoiceTemplateDTO | undefined {
+        if (!entity) {
+            return undefined;
+        }
 
-  toDTO(entity: InvoiceTemplate | undefined): InvoiceTemplateDTO | undefined {
-    if (!entity) {
-      return undefined;
+        const dto: InvoiceTemplateDTO = {
+            id: entity.id,
+            name: entity.name,
+            fileId: parseInt(entity.backgroundPdf),
+            marginTopFirstPage: entity.marginTopFirstPage,
+            marginBottomFirstPage: entity.marginBottomFirstPage,
+            marginTopOtherPages: entity.marginTopOtherPages,
+            marginBottomOtherPages: entity.marginBottomOtherPages,
+
+        };
+        return dto;
     }
-
-    return {
-      id: entity.id,
-      name: entity.name,
-      fileId: Number.parseInt(entity.backgroundPdf),
-      marginTopFirstPage: entity.marginTopFirstPage,
-      marginBottomFirstPage: entity.marginBottomFirstPage,
-      marginTopOtherPages: entity.marginTopOtherPages,
-      marginBottomOtherPages: entity.marginBottomOtherPages
-    };
-  }
 }

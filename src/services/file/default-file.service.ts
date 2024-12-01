@@ -22,13 +22,13 @@ export class DefaultFileService implements FileService {
     async downloadFile(fileId: number): Promise<FileWithContent | undefined> {
         const file = this.files.find(file => file.id === fileId);
         if (!file) {
-            return undefined;
+            return Promise.reject('File not found');
         }
-        return {
+        return Promise.resolve({
             id: file.id,
             name: file?.fileName ?? '',
             content: await file.data?.text() ?? '',
-        }
+        });
     }
 
 }

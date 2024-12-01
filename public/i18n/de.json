@@ -51,6 +51,9 @@
                 "update": "Aktualisieren",
                 "delete": "Löschen"
             }
+        },
+        "download": {
+            "btn": "Vorlage herunterladen"
         }
     }
 }

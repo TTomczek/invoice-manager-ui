@@ -6,7 +6,7 @@ import { SalesTax } from '../../models/sales-tax.model';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonDirective } from 'primeng/button';
-import { AuthState } from '../../state/app-state.service';
+import { AuthState } from '../../state/auth-state.service';
 
 @Component({
     selector: 'im-sales-tax-list',
