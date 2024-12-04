@@ -1,0 +1,22 @@
+<div class="flex flex-column gap-2">
+    <label for="street">{{ 'address.form.label.street' | translate }}</label>
+    <input pInputText type="text" class="form-control" id="street" [ngModel]="entity.street" (ngModelChange)="setStreet($event)"
+           name="street"
+           required>
+    <label for="housenumber">{{ 'address.form.label.housenumber' | translate }}</label>
+    <input pInputText type="text" class="form-control" id="housenumber"
+           [ngModel]="entity.houseNumber" (ngModelChange)="setHouseNumber($event)"
+           name="housenumber" required>
+    <label for="city">{{ 'address.form.label.city' | translate }}</label>
+    <input pInputText type="text" class="form-control" id="city"
+           [ngModel]="entity.city" (ngModelChange)="setCity($event)"
+           name="city" required>
+    <label for="zipcode">{{ 'address.form.label.zipcode' | translate }}</label>
+    <input pInputText type="text" class="form-control" id="zipcode"
+           [ngModel]="entity.zipCode" (ngModelChange)="setZipCode($event)"
+           name="zipcode" required>
+    <label for="country">{{ 'address.form.label.country' | translate }}</label>
+    <input pInputText type="text" class="form-control" id="country"
+           [ngModel]="entity.country" (ngModelChange)="setCountry($event)"
+           name="country" required>
+</div>

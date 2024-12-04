@@ -7,7 +7,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { AuthenticationService } from '../../services/authentification/authentication.service';
 import { environment } from '../../environments/environment';
 import { provideTranslateService } from '@ngx-translate/core';
-import { MessagesModule } from 'primeng/messages';
 import { SalesTaxService } from '../../services/sales-tax/sales-tax.service';
 import { TranslatableMessageService } from '../../services/translatable-message.service';
 import { MessageService } from 'primeng/api';
@@ -15,6 +14,7 @@ import { InvoiceTemplateService } from '../../services/invoice-template/invoice-
 import { FileService } from '../../services/file/file.service';
 import { BASE_PATH } from '@invoice-manager/api-typescript-angular-client';
 import { ToastModule } from 'primeng/toast';
+import { BusinessPartnerService } from '../../services/business-partner/business-partner.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -53,5 +53,9 @@ export function provideIMServices() {
             provide: FileService,
             useClass: environment.fileService,
         },
+        {
+            provide: BusinessPartnerService,
+            useClass: environment.businessPartnersService,
+        }
     ];
 }

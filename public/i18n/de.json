@@ -55,5 +55,38 @@
         "download": {
             "btn": "Vorlage herunterladen"
         }
+    },
+    "businesspartners": {
+        "table": {
+            "header": {
+                "name": "Kundenname",
+                "description": "Beschreibung",
+                "street": "Straße",
+                "city": "Stadt",
+                "country": "Land"
+            }
+        },
+        "form": {
+            "label": {
+                "name": "Kundenname",
+                "description": "Beschreibung"
+            },
+            "button": {
+                "create": "Erstellen",
+                "update": "Aktualisieren",
+                "delete": "Löschen"
+            }
+        }
+    },
+    "address": {
+        "form": {
+            "label": {
+                "street": "Straße",
+                "city": "Stadt",
+                "zipcode": "PLZ",
+                "country": "Land",
+                "housenumber": "Hausnummer"
+            }
+        }
     }
 }

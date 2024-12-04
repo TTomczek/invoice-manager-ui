@@ -70,7 +70,8 @@ export class DefaultInvoiceTemplateService implements InvoiceTemplateService {
             this.invoiceTemplates = this.invoiceTemplates.map((invoiceTemplate) =>
                 invoiceTemplate.id === updatedInvoiceTemplate.id ? invoiceTemplate : updatedInvoiceTemplate
             );
+            return Promise.resolve(invoiceTemplate);
         }
-        return Promise.resolve(invoiceTemplate);
+        return Promise.reject('Invoice Template not found');
     }
 }

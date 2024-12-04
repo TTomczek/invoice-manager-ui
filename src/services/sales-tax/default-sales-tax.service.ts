@@ -69,7 +69,8 @@ export class DefaultSalesTaxService implements SalesTaxService {
         const updatedSalesTax = this.taxes.find((tax) => tax.id === salesTaxId);
         if (updatedSalesTax) {
             this.taxes = this.taxes.map((tax) => (tax.id === salesTaxId ? salesTax : tax));
+            return Promise.resolve(salesTax);
         }
-        return Promise.resolve(salesTax);
+        return Promise.reject('Sales Tax not found');
     }
 }
