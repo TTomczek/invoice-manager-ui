@@ -18,8 +18,8 @@ export class BusinessPartnerConverterService {
       name: dto.name ?? '',
       description: dto.description ?? '',
       address: this.addressConverter.toEntity(dto.address),
-      contactPersons: dto.contactPersons?.map((cp) => cp.toString()) ?? [],
-      invoices: dto.invoices?.map((i) => i.toString()) ?? [],
+      contactPersons: dto.contactPersons?.map((cp) => cp) ?? [],
+      invoices: dto.invoices?.map((i) => i) ?? [],
     };
   }
 
@@ -33,8 +33,8 @@ export class BusinessPartnerConverterService {
       name: entity.name,
       description: entity.description,
       address: this.addressConverter.toDTO(entity.address),
-      contactPersons: entity.contactPersons.map((cp) => parseInt(cp)),
-      invoices: entity.invoices.map((i) => parseInt(i)),
+      contactPersons: entity.contactPersons.map((cp) => cp),
+      invoices: entity.invoices.map((i) => i),
     };
   }
 }

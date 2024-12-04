@@ -5,5 +5,5 @@ export interface InvoiceTemplate {
   marginBottomFirstPage: number;
   marginTopOtherPages: number;
   marginBottomOtherPages: number;
-  backgroundPdf: string;
+  backgroundPdf: number | undefined;
 }

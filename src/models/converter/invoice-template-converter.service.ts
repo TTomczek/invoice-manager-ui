@@ -14,7 +14,7 @@ export class InvoiceTemplateConverterService {
         const entity: InvoiceTemplate = {
             id: dto.id,
             name: dto.name ?? '',
-            backgroundPdf: dto.fileId?.toString() ?? '',
+            backgroundPdf: dto.fileId,
             marginTopFirstPage: dto.marginTopFirstPage ?? 0,
             marginBottomFirstPage: dto.marginBottomFirstPage ?? 0,
             marginTopOtherPages: dto.marginTopOtherPages ?? 0,
@@ -31,7 +31,7 @@ export class InvoiceTemplateConverterService {
         const dto: InvoiceTemplateDTO = {
             id: entity.id,
             name: entity.name,
-            fileId: parseInt(entity.backgroundPdf),
+            fileId: entity.backgroundPdf,
             marginTopFirstPage: entity.marginTopFirstPage,
             marginBottomFirstPage: entity.marginBottomFirstPage,
             marginTopOtherPages: entity.marginTopOtherPages,

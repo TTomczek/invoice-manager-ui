@@ -7,10 +7,10 @@ export interface Invoice {
   serviceProvidedFrom: string;
   serviceProvidedTo: string;
   orderNumber: string;
-  file: string;
-  salesTax: string;
-  invoicePositions: string[];
-  receiver: string;
-  invoiceTemplate: string;
-  customer: string;
+  file: number | undefined;
+  salesTax: number | undefined;
+  invoicePositions: number[];
+  receiver: number | undefined;
+  invoiceTemplate: number | undefined;
+  customer: number | undefined;
 }

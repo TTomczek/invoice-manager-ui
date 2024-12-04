@@ -11,6 +11,7 @@
                         <th>{{ 'businesspartners.table.header.street' | translate }}</th>
                         <th>{{ 'businesspartners.table.header.city' | translate }}</th>
                         <th>{{ 'businesspartners.table.header.country' | translate }}</th>
+                        <th>{{ 'businesspartners.table.header.tocontactpersons' | translate }}</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-partner>
@@ -20,6 +21,7 @@
                         <td>{{ partner.address.street }} {{partner.address.houseNumber}}</td>
                         <td>{{ partner.address.city }}</td>
                         <td>{{ partner.address.country }}</td>
+                        <td><button role="button" pButton (click)="navigateToContactPersons(partner.id)"><span class="pi pi-arrow-right"></span></button></td>
                     </tr>
                 </ng-template>
             </p-table>

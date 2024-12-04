@@ -10,6 +10,7 @@ import { TableModule, TableRowSelectEvent } from 'primeng/table';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BusinessPartner } from '../../models/business-partner.model';
 import { AddressFormComponent } from '../address-form/address-form.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'im-business-partners-list',
@@ -30,6 +31,7 @@ import { AddressFormComponent } from '../address-form/address-form.component';
 export class BusinessPartnersListComponent {
     protected businessPartnerFacade = inject(BusinessPartnerFacadeService);
     private authState = inject(AuthState);
+    private router: Router = inject(Router);
 
     protected selectedEntity: BusinessPartner = {
         id: undefined,
@@ -91,6 +93,10 @@ export class BusinessPartnersListComponent {
         console.log(businessPartner);
         this.businessPartnerFacade.createBusinessPartner(businessPartner);
         this.unselectEntity();
+    }
+
+    navigateToContactPersons(id: string) {
+        this.router.navigate([`/business-partners/${id}/contact-persons`]);
     }
 
     userCanEdit = computed(() => {

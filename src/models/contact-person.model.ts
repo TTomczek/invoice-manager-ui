@@ -7,6 +7,6 @@ export interface ContactPerson {
   firstName: string;
   email: string;
   address: Address;
-  businessPartner: string;
+  businessPartner: number | undefined;
   salutation: Salutation;
 }

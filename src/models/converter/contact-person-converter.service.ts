@@ -22,7 +22,7 @@ export class ContactPersonConverterService {
         name: dto.name ?? '',
         email: dto.email ?? '',
         address: this.addressConverter.toEntity(dto.address),
-        businessPartner: dto.businessPartner?.toString() ?? '',
+        businessPartner: dto.businessPartner,
         salutation: this.salutationConverter.toEntity(dto.salutation),
       };
     }
@@ -37,7 +37,7 @@ export class ContactPersonConverterService {
         name: entity.name ?? '',
         email: entity.email ?? '',
         address: this.addressConverter.toDTO(entity.address),
-        businessPartner: parseInt(entity.businessPartner),
+        businessPartner: entity.businessPartner,
         salutation: this.salutationConverter.toDTO(entity.salutation)
       };
     }

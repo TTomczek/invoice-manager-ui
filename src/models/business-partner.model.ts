@@ -5,6 +5,6 @@ export interface BusinessPartner {
   name: string;
   description: string;
   address: Address;
-  contactPersons: string[];
-  invoices: string[];
+  contactPersons: number[];
+  invoices: number[];
 }

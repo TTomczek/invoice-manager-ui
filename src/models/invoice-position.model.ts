@@ -4,7 +4,7 @@ export interface InvoicePosition {
   id: number | undefined;
   description: string;
   quantity: number;
-  unit: Unit
+  unit: Unit;
   pricePerUnitInCents: number;
-  invoice: string
+  invoice: number | undefined;
 }

@@ -18,18 +18,18 @@ export class InvoiceConverterService {
       return {
         id: dto.id,
         description: dto.description ?? '',
-        file: dto.file?.toString() ?? '',
-        customer: dto.customerNumber?.toString() ?? '',
-        receiver: dto.receiver?.toString() ?? '',
+        file: dto.file,
+        customer: dto.customerNumber,
+        receiver: dto.receiver,
         perMail: dto.viaMail ?? false,
         preText: dto.preText ?? '',
         postText: dto.postText ?? '',
-        invoiceTemplate: dto.invoiceTemplate?.toString() ?? '',
+        invoiceTemplate: dto.invoiceTemplate,
         serviceProvidedFrom: dto.serviceFrom ?? '',
         serviceProvidedTo: dto.serviceTo ?? '',
-        salesTax: dto.salesTax?.toString() ?? '',
+        salesTax: dto.salesTax,
         orderNumber: dto.orderNumber ?? '',
-        invoicePositions: dto.positions?.map(ip => ip.toString()) ?? []
+        invoicePositions: dto.positions?.map(ip => ip) ?? []
       };
     }
 
@@ -47,12 +47,12 @@ export class InvoiceConverterService {
         serviceFrom: entity.serviceProvidedFrom,
         serviceTo: entity.serviceProvidedTo,
         orderNumber: entity.orderNumber,
-        file: parseInt(entity.file),
-        receiver: parseInt(entity.receiver),
-        salesTax: parseInt(entity.salesTax),
-        positions: entity.invoicePositions.map(ip => parseInt(ip)),
-        invoiceTemplate: parseInt(entity.invoiceTemplate),
-        customerNumber: parseInt(entity.customer)
+        file: entity.file,
+        receiver: entity.receiver,
+        salesTax: entity.salesTax,
+        positions: entity.invoicePositions.map(ip => ip),
+        invoiceTemplate: entity.invoiceTemplate,
+        customerNumber: entity.customer
       };
     }
 }

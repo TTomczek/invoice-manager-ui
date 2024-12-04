@@ -20,7 +20,7 @@ export class InvoicePositionConverterService {
       unit: this.unitConverter.toEntity(dto.unit),
       quantity: dto.quantity ?? 0,
       pricePerUnitInCents: dto.pricePerUnitInCents ?? 0,
-      invoice: dto.invoice?.toString() ?? ''
+      invoice: dto.invoice
     };
   }
 
@@ -31,7 +31,7 @@ export class InvoicePositionConverterService {
     return {
       id: entity.id,
       description: entity.description,
-      invoice: Number.parseInt(entity.invoice),
+      invoice: entity.invoice,
       quantity: entity.quantity,
       unit: this.unitConverter.toDTO(entity.unit),
       pricePerUnitInCents: entity.pricePerUnitInCents

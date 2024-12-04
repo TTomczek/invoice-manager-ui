@@ -63,7 +63,8 @@
                 "description": "Beschreibung",
                 "street": "Straße",
                 "city": "Stadt",
-                "country": "Land"
+                "country": "Land",
+                "tocontactpersons": "Ansprechpartner"
             }
         },
         "form": {
