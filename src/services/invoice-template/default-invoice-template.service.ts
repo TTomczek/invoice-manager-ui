@@ -17,7 +17,7 @@ export class DefaultInvoiceTemplateService implements InvoiceTemplateService {
                 marginBottomFirstPage: 40,
                 marginTopOtherPages: 20,
                 marginBottomOtherPages: 20,
-                backgroundPdf: '',
+                backgroundPdf: undefined,
             },
             {
                 id: 2,
@@ -26,7 +26,7 @@ export class DefaultInvoiceTemplateService implements InvoiceTemplateService {
                 marginBottomFirstPage: 20,
                 marginTopOtherPages: 30,
                 marginBottomOtherPages: 30,
-                backgroundPdf: '',
+                backgroundPdf: undefined,
             }
         );
     }

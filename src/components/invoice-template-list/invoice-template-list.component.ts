@@ -43,7 +43,7 @@ export class InvoiceTemplateListComponent {
         marginBottomFirstPage: 0,
         marginTopOtherPages: 0,
         marginBottomOtherPages: 0,
-        backgroundPdf: '',
+        backgroundPdf: undefined,
     };
 
     @ViewChild('backgroundPdfFileUpload') fileUpload: FileUpload | undefined;
@@ -64,14 +64,14 @@ export class InvoiceTemplateListComponent {
             marginBottomFirstPage: 0,
             marginTopOtherPages: 0,
             marginBottomOtherPages: 0,
-            backgroundPdf: '',
+            backgroundPdf: undefined,
         };
     }
 
     async createInvoiceTemplate(invoiceTemplate: InvoiceTemplate) {
         if (this.fileToUpload) {
             const backgroundPdfId = await this.invoiceTemplateFacade.uploadBackgroundPdf(this.fileToUpload);
-            invoiceTemplate.backgroundPdf = backgroundPdfId.toString();
+            invoiceTemplate.backgroundPdf = backgroundPdfId;
             this.invoiceTemplateFacade.createInvoiceTemplate(invoiceTemplate);
             this.unselectEntity();
             this.emptyFileToUpload();
@@ -83,7 +83,7 @@ export class InvoiceTemplateListComponent {
     async updateInvoiceTemplate(invoiceTemplate: InvoiceTemplate) {
         if (this.fileToUpload) {
             const newBackgroundPdfId = await this.invoiceTemplateFacade.uploadBackgroundPdf(this.fileToUpload);
-            invoiceTemplate.backgroundPdf = newBackgroundPdfId.toString();
+            invoiceTemplate.backgroundPdf = newBackgroundPdfId;
         }
         if (invoiceTemplate.id) {
             this.invoiceTemplateFacade.updateInvoiceTemplate(invoiceTemplate.id, invoiceTemplate);
