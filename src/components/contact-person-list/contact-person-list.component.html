@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <p-table [value]="contactPersonFacade.getContactPersons()" [paginator]="true" [selection]="selectedEntity()"
-                     (onRowSelect)="selectEntity($event)" (onRowUnselect)="unselectEntity()"
+                     (onRowSelect)="selectEntity($event)" (onRowUnselect)="unselectEntity()" dataKey="id"
                      selectionMode="single" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
                 <ng-template pTemplate="header">
                     <tr>
