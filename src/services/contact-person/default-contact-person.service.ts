@@ -8,6 +8,10 @@ import { ContactPerson } from '../../models/contact-person.model';
 export class DefaultContactPersonService implements ContactPersonService {
     private contactPersons: ContactPerson[] = [];
 
+    getContactPersons(): Promise<ContactPerson[] | undefined> {
+        return Promise.resolve(this.contactPersons);
+    }
+
     createContactPerson(contactPerson: ContactPerson): Promise<ContactPerson | undefined> {
         contactPerson.id = this.contactPersons.length + Math.random() * 10;
         this.contactPersons.push(contactPerson);
@@ -24,10 +28,6 @@ export class DefaultContactPersonService implements ContactPersonService {
 
     getContactPersonById(contactPersonId: number): Promise<ContactPerson | undefined> {
         return Promise.resolve(this.contactPersons.find((contactPerson) => contactPerson.id === contactPersonId));
-    }
-
-    getContactPersonsForBusinessPartner(id: number): Promise<ContactPerson[] | undefined> {
-        return Promise.resolve(this.contactPersons.filter((contactPerson) => contactPerson.businessPartner === id));
     }
 
     updateContactPerson(contactPersonId: number, contactPerson: ContactPerson): Promise<ContactPerson | undefined> {

@@ -1,11 +1,15 @@
 import { BusinessPartnerService } from './business-partner.service';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BusinessPartner } from '../../models/business-partner.model';
+import { ContactPerson } from '../../models/contact-person.model';
+import { DefaultContactPersonService } from '../contact-person/default-contact-person.service';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DefaultBusinessPartnerService implements BusinessPartnerService {
+    private defaultContactPersonService: DefaultContactPersonService = inject(DefaultContactPersonService);
     private businessPartners: BusinessPartner[] = [];
 
     createBusinessPartner(businessPartner: BusinessPartner): Promise<BusinessPartner | undefined> {
@@ -38,5 +42,15 @@ export class DefaultBusinessPartnerService implements BusinessPartnerService {
         }
         return Promise.reject('Business Partner not found');
     }
+
+    async getContactPersonsOfBusinessPartner(businessPartnerId: number): Promise<ContactPerson[] | undefined> {
+        const contactPersons = await this.defaultContactPersonService.getContactPersons();
+        if (!contactPersons) {
+            return undefined;
+        }
+        return contactPersons.filter((contactPerson) => contactPerson.businessPartner === businessPartnerId);
+    }
+
+
 
 }

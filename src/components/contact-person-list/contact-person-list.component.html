@@ -1,1 +1,66 @@
-<p>contact-person-list works!</p>
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-table [value]="contactPersonFacade.getContactPersons()" [paginator]="true" [selection]="selectedEntity()"
+                     (onRowSelect)="selectEntity($event)" (onRowUnselect)="unselectEntity()"
+                     selectionMode="single" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>{{ 'contactpersons.table.header.firstname' | translate }}</th>
+                        <th>{{ 'contactpersons.table.header.name' | translate }}</th>
+                        <th>{{ 'contactpersons.table.header.email' | translate }}</th>
+                        <th>{{ 'contactpersons.table.header.street' | translate }}</th>
+                        <th>{{ 'contactpersons.table.header.city' | translate }}</th>
+                        <th>{{ 'contactpersons.table.header.country' | translate }}</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-partner>
+                    <tr [pSelectableRow]="partner">
+                        <td>{{ partner.firstName }}</td>
+                        <td>{{ partner.name }}</td>
+                        <td>{{ partner.email }}</td>
+                        <td>{{ partner.address.street }} {{partner.address.houseNumber}}</td>
+                        <td>{{ partner.address.city }}</td>
+                        <td>{{ partner.address.country }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        @if (authState.userCanEdit()) {
+            <div class="card col-12">
+                <form class="col-12">
+                    <div class="flex flex-column gap-2">
+                        <label for="firstname">{{ 'contactpersons.form.label.firstname' | translate }}</label>
+                        <input pInputText type="text" class="form-control" id="firstname"
+                               [(ngModel)]="selectedEntity().firstName"
+                               name="firstname" required>
+                        <label for="name">{{ 'contactpersons.form.label.name' | translate }}</label>
+                        <input pInputText type="text" class="form-control" id="name" [(ngModel)]="selectedEntity().name"
+                               name="name"
+                               required>
+                        <label for="email">{{ 'contactpersons.form.label.email' | translate }}</label>
+                        <input pInputText type="text" class="form-control" id="email" [(ngModel)]="selectedEntity().email"
+                               name="email"
+                               required>
+                        <label for="salutation">{{ 'contactpersons.form.label.salutation' | translate }}</label>
+                        <p-dropdown [options]="salutationOptions()" [ngModel]="currentSelectedSalutation()" (ngModelChange)="setSalutationFromDropDown($event)" name="salutation"
+                                    optionLabel="value" dataKey="key" id="salutation"></p-dropdown>
+                    </div>
+                    <im-address-form [(address)]="selectedEntity().address"></im-address-form>
+                    @if (selectedEntity().id) {
+                        <button pButton type="button" class="btn btn-primary"
+                                (click)="updateContactPerson(selectedEntity())">{{ 'contactpersons.form.button.update' | translate }}
+                        </button>
+                        <button pButton type="button" class="btn btn-danger"
+                                (click)="deleteContactPerson(selectedEntity())">{{ 'contactpersons.form.button.delete' | translate }}
+                        </button>
+                    } @else {
+                        <button pButton type="button" class="btn btn-primary"
+                                (click)="createContactPerson(selectedEntity())">{{ 'contactpersons.form.button.create' | translate }}
+                        </button>
+                    }
+                </form>
+            </div>
+        }
+    </div>
+</div>

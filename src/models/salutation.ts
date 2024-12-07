@@ -1,5 +1,5 @@
 export enum Salutation {
-  HERR,
-  FRAU,
-  DIVERS
+  HERR = 'HERR',
+  FRAU = 'FRAU',
+  DIVERS = 'DIVERS',
 }

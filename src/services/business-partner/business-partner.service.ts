@@ -1,4 +1,5 @@
 import { BusinessPartner } from '../../models/business-partner.model';
+import { ContactPerson } from '../../models/contact-person.model';
 
 export abstract class BusinessPartnerService {
     abstract getBusinessPartnerById(businessPartnerId: number): Promise<BusinessPartner | undefined>;
@@ -6,4 +7,5 @@ export abstract class BusinessPartnerService {
     abstract createBusinessPartner(businessPartner: BusinessPartner): Promise<BusinessPartner | undefined>;
     abstract updateBusinessPartner(businessPartnerId: number, businessPartner: BusinessPartner): Promise<BusinessPartner | undefined>;
     abstract deleteBusinessPartner(businessPartnerId: number): Promise<BusinessPartner | undefined>;
+    abstract getContactPersonsOfBusinessPartner(businessPartnerId: number): Promise<ContactPerson[] | undefined>;
 }

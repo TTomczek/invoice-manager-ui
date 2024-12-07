@@ -7,6 +7,8 @@ import { InvoiceTemplateImplService } from '../services/invoice-template/invoice
 import { FileImplService } from '../services/file/file-impl.service';
 import { DefaultBusinessPartnerService } from '../services/business-partner/default-business-partner.service';
 import { BusinessPartnerImplService } from '../services/business-partner/business-partner-impl.service';
+import { ContactPersonImplService } from '../services/contact-person/contact-person-impl.service';
+import { DefaultContactPersonService } from '../services/contact-person/default-contact-person.service';
 
 // TODO Switch back to Default Services
 export const environment = {
@@ -17,5 +19,6 @@ export const environment = {
     salesTaxService: SalesTaxImplService,
     invoiceTemplateService: InvoiceTemplateImplService,
     fileService: FileImplService,
-    businessPartnersService: BusinessPartnerImplService
+    businessPartnersService: BusinessPartnerImplService,
+    contactPersonService: ContactPersonImplService
 };

@@ -14,7 +14,7 @@ export class BusinessPartnerFacadeService {
     private readonly businessPartners = signal<BusinessPartner[]>([]);
     getBusinessPartners = this.businessPartners.asReadonly();
 
-    loadBusinessPartners() {
+    loadBusinessPartners(): void {
         this.businessPartnerService.getBusinessPartners().then(businessPartners => {
             if (businessPartners) {
                 this.businessPartners.set(businessPartners);
@@ -25,7 +25,7 @@ export class BusinessPartnerFacadeService {
         });
     }
 
-    createBusinessPartner(businessPartner: BusinessPartner) {
+    createBusinessPartner(businessPartner: BusinessPartner): void {
         this.businessPartnerService.createBusinessPartner(businessPartner).then(createdBusinessPartner => {
             if (createdBusinessPartner) {
                 this.businessPartners.set([...this.getBusinessPartners(), createdBusinessPartner]);
@@ -36,7 +36,7 @@ export class BusinessPartnerFacadeService {
         });
     }
 
-    deleteBusinessPartner(businessPartnerId: number) {
+    deleteBusinessPartner(businessPartnerId: number): void {
         this.businessPartnerService.deleteBusinessPartner(businessPartnerId).then(deletedBusinessPartner => {
             if (deletedBusinessPartner) {
                 this.businessPartners.set(this.getBusinessPartners().filter(businessPartner => businessPartner.id !== deletedBusinessPartner.id));
@@ -47,7 +47,7 @@ export class BusinessPartnerFacadeService {
         });
     }
 
-    updateBusinessPartner(businessPartnerId: number, businessPartner: BusinessPartner) {
+    updateBusinessPartner(businessPartnerId: number, businessPartner: BusinessPartner): void {
         this.businessPartnerService.updateBusinessPartner(businessPartnerId, businessPartner).then(updatedBusinessPartner => {
             if (updatedBusinessPartner) {
                 this.businessPartners.set(this.getBusinessPartners().map(businessPartner => businessPartner.id === updatedBusinessPartner.id ? updatedBusinessPartner : businessPartner));
@@ -58,7 +58,7 @@ export class BusinessPartnerFacadeService {
         });
     }
 
-    getBusinessPartnerById(businessPartnerId: number) {
+    getBusinessPartnerById(businessPartnerId: number): BusinessPartner | undefined {
         return this.businessPartners().find(businessPartner => businessPartner.id === businessPartnerId);
     }
 }

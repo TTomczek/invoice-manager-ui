@@ -6,23 +6,33 @@ import { lastValueFrom } from 'rxjs';
 import { ContactPersonConverterService } from '../../models/converter/contact-person-converter.service';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ContactPersonImplService implements ContactPersonService {
     private contactPersonService: ContactPersonsService = inject(ContactPersonsService);
     private contactPersonConverter: ContactPersonConverterService = inject(ContactPersonConverterService);
+
+    async getContactPersons(): Promise<ContactPerson[] | undefined> {
+        return lastValueFrom(this.contactPersonService.getAllContactPersons()).then((contactPersons) => {
+            return contactPersons
+                .map((contactPerson) => this.contactPersonConverter.toEntity(contactPerson))
+                .filter((contactPerson) => contactPerson !== undefined);
+        });
+    }
 
     async createContactPerson(contactPerson: ContactPerson): Promise<ContactPerson | undefined> {
         const contactPersonDTO = this.contactPersonConverter.toDTO(contactPerson);
         if (!contactPersonDTO) {
             return Promise.reject('converter failed');
         }
-        return lastValueFrom(this.contactPersonService.createContactPerson(contactPersonDTO)).then((createdContactPerson) => {
-            if (!createdContactPerson) {
-                return undefined;
+        return lastValueFrom(this.contactPersonService.createContactPerson(contactPersonDTO)).then(
+            (createdContactPerson) => {
+                if (!createdContactPerson) {
+                    return undefined;
+                }
+                return this.contactPersonConverter.toEntity(createdContactPerson);
             }
-            return this.contactPersonConverter.toEntity(createdContactPerson);
-        });
+        );
     }
 
     async deleteContactPerson(id: number): Promise<ContactPerson | undefined> {
@@ -37,20 +47,18 @@ export class ContactPersonImplService implements ContactPersonService {
         });
     }
 
-    async getContactPersonsForBusinessPartner(id: number): Promise<ContactPerson[] | undefined> {
-        return Promise.resolve(undefined);
-    }
-
     async updateContactPerson(id: number, contactPerson: ContactPerson): Promise<ContactPerson | undefined> {
         const contactPersonDTO = this.contactPersonConverter.toDTO(contactPerson);
         if (!contactPersonDTO) {
             return Promise.reject('converter failed');
         }
-        return lastValueFrom(this.contactPersonService.updateContactPersonById(id, contactPersonDTO)).then((updatedContactPerson) => {
-            if (!updatedContactPerson) {
-                return undefined;
+        return lastValueFrom(this.contactPersonService.updateContactPersonById(id, contactPersonDTO)).then(
+            (updatedContactPerson) => {
+                if (!updatedContactPerson) {
+                    return undefined;
+                }
+                return this.contactPersonConverter.toEntity(updatedContactPerson);
             }
-            return this.contactPersonConverter.toEntity(updatedContactPerson);
-        });
+        );
     }
 }

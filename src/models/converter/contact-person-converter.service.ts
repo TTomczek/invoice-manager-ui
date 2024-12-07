@@ -31,6 +31,7 @@ export class ContactPersonConverterService {
       if (!entity) {
         return undefined;
       }
+        console.log('entity', entity);
       return {
         id: entity.id,
         firstName: entity.firstName ?? '',

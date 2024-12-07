@@ -3,6 +3,7 @@ import { InvoiceTemplateImplService } from '../services/invoice-template/invoice
 import { FileImplService } from '../services/file/file-impl.service';
 import { AuthenticationImplService } from '../services/authentification/authentication-impl.service';
 import { BusinessPartnerImplService } from '../services/business-partner/business-partner-impl.service';
+import { ContactPersonImplService } from '../services/contact-person/contact-person-impl.service';
 
 export const environment = {
     production: false,
@@ -12,5 +13,6 @@ export const environment = {
     salesTaxService: SalesTaxImplService,
     invoiceTemplateService: InvoiceTemplateImplService,
     fileService: FileImplService,
-    businessPartnersService: BusinessPartnerImplService
+    businessPartnersService: BusinessPartnerImplService,
+    contactPersonService: ContactPersonImplService
 };

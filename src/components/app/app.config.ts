@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withHashLocation } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withHashLocation } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { provideHttpClient } from '@angular/common/http';
@@ -15,11 +15,12 @@ import { FileService } from '../../services/file/file.service';
 import { BASE_PATH } from '@invoice-manager/api-typescript-angular-client';
 import { ToastModule } from 'primeng/toast';
 import { BusinessPartnerService } from '../../services/business-partner/business-partner.service';
+import { ContactPersonService } from '../../services/contact-person/contact-person.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideZoneChangeDetection({ eventCoalescing: true }),
-        provideRouter(appRoutes, withHashLocation()),
+        provideRouter(appRoutes, withHashLocation(), withComponentInputBinding()),
         provideOAuthClient(),
         provideHttpClient(),
         provideAnimations(),
@@ -56,6 +57,10 @@ export function provideIMServices() {
         {
             provide: BusinessPartnerService,
             useClass: environment.businessPartnersService,
+        },
+        {
+            provide: ContactPersonService,
+            useClass: environment.contactPersonService,
         }
     ];
 }

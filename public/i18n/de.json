@@ -79,6 +79,31 @@
             }
         }
     },
+    "contactpersons": {
+        "table": {
+            "header": {
+                "firstname": "Vorname",
+                "name": "Name",
+                "email": "E-Mail",
+                "street": "Straße",
+                "city": "Stadt",
+                "country": "Land"
+            }
+        },
+        "form": {
+            "label": {
+                "firstname": "Vorname",
+                "name": "Name",
+                "email": "E-Mail",
+                "salutation": "Anrede"
+            },
+            "button": {
+                "create": "Erstellen",
+                "update": "Aktualisieren",
+                "delete": "Löschen"
+            }
+        }
+    },
     "address": {
         "form": {
             "label": {

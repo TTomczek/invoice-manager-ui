@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BusinessPartnerFacadeService } from '../../services/business-partner/business-partner-facade.service';
 import { AuthState } from '../../state/auth-state.service';
 import { ButtonDirective } from 'primeng/button';
@@ -29,9 +29,10 @@ import { Router } from '@angular/router';
     styleUrl: './business-partners-list.component.scss',
 })
 export class BusinessPartnersListComponent {
-    protected businessPartnerFacade = inject(BusinessPartnerFacadeService);
-    private authState = inject(AuthState);
     private router: Router = inject(Router);
+
+    protected businessPartnerFacade = inject(BusinessPartnerFacadeService);
+    protected authState = inject(AuthState);
 
     protected selectedEntity: BusinessPartner = {
         id: undefined,
@@ -90,7 +91,6 @@ export class BusinessPartnersListComponent {
     }
 
     createBusinessPartner(businessPartner: BusinessPartner) {
-        console.log(businessPartner);
         this.businessPartnerFacade.createBusinessPartner(businessPartner);
         this.unselectEntity();
     }
@@ -98,8 +98,4 @@ export class BusinessPartnersListComponent {
     navigateToContactPersons(id: string) {
         this.router.navigate([`/business-partners/${id}/contact-persons`]);
     }
-
-    userCanEdit = computed(() => {
-        return this.authState.getUserRoles().includes('manager');
-    });
 }
