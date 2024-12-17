@@ -9,6 +9,9 @@ import { DefaultBusinessPartnerService } from '../services/business-partner/defa
 import { BusinessPartnerImplService } from '../services/business-partner/business-partner-impl.service';
 import { ContactPersonImplService } from '../services/contact-person/contact-person-impl.service';
 import { DefaultContactPersonService } from '../services/contact-person/default-contact-person.service';
+import { InvoiceImplService } from '../services/invoice/invoice-impl.service';
+import { InvoicePositionService } from '../services/invoice-position/invoice-position.service';
+import { InvoicePositionImplService } from '../services/invoice-position/invoice-position-impl.service';
 
 // TODO Switch back to Default Services
 export const environment = {
@@ -20,5 +23,7 @@ export const environment = {
     invoiceTemplateService: InvoiceTemplateImplService,
     fileService: FileImplService,
     businessPartnersService: BusinessPartnerImplService,
-    contactPersonService: ContactPersonImplService
+    contactPersonService: ContactPersonImplService,
+    invoiceService: InvoiceImplService,
+    invoicePositionService: InvoicePositionImplService
 };

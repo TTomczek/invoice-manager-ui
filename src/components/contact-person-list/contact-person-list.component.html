@@ -29,23 +29,23 @@
         @if (authState.userCanEdit()) {
             <div class="card col-12">
                 <form class="col-12">
-                    <div class="flex flex-column gap-2">
-                        <label for="firstname">{{ 'contactpersons.form.label.firstname' | translate }}</label>
+                    <div class="flex flex-column gap-2 mb-2">
+                        <label for="firstname" class="mt-2">{{ 'contactpersons.form.label.firstname' | translate }}</label>
                         <input pInputText type="text" class="form-control" id="firstname"
                                [(ngModel)]="selectedEntity().firstName"
                                name="firstname" required>
-                        <label for="name">{{ 'contactpersons.form.label.name' | translate }}</label>
+                        <label for="name" class="mt-2">{{ 'contactpersons.form.label.name' | translate }}</label>
                         <input pInputText type="text" class="form-control" id="name" [(ngModel)]="selectedEntity().name"
                                name="name"
                                required>
-                        <label for="email">{{ 'contactpersons.form.label.email' | translate }}</label>
+                        <label for="email" class="mt-2">{{ 'contactpersons.form.label.email' | translate }}</label>
                         <input pInputText type="text" class="form-control" id="email" [(ngModel)]="selectedEntity().email"
                                name="email"
                                required>
-                        <label for="salutation">{{ 'contactpersons.form.label.salutation' | translate }}</label>
-                        <p-dropdown [options]="salutationOptions()" [ngModel]="currentSelectedSalutation()" (ngModelChange)="setSalutationFromDropDown($event)" name="salutation"
-                                    optionLabel="value" dataKey="key" id="salutation"></p-dropdown>
-                    </div>
+                        <label for="salutation" class="mt-2">{{ 'contactpersons.form.label.salutation' | translate }}</label>
+
+                    </div><p-dropdown [options]="salutationOptions()" [ngModel]="currentSelectedSalutation()" (ngModelChange)="setSalutationFromDropDown($event)" name="salutation"
+                                      optionLabel="value" dataKey="key" id="salutation"></p-dropdown>
                     <im-address-form [(address)]="selectedEntity().address"></im-address-form>
                     @if (selectedEntity().id) {
                         <button pButton type="button" class="btn btn-primary"

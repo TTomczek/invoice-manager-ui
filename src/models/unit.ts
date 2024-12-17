@@ -1,5 +1,5 @@
 export enum Unit {
-  HOUR,
-  PD,
-  PIECE
+  HOUR = 'HOUR',
+  PD = 'PD',
+  PIECE = 'PIECE',
 }

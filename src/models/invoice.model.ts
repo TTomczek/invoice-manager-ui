@@ -13,4 +13,5 @@ export interface Invoice {
   receiver: number | undefined;
   invoiceTemplate: number | undefined;
   customer: number | undefined;
+  paid: boolean;
 }

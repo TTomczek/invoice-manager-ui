@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { BusinessPartnerFacadeService } from '../../services/business-partner/business-partner-facade.service';
+import { BusinessPartnerFacade } from '../../services/business-partner/business-partner-facade.service';
 import { AuthState } from '../../state/auth-state.service';
 import { ButtonDirective } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
@@ -31,7 +31,7 @@ import { Router } from '@angular/router';
 export class BusinessPartnersListComponent {
     private router: Router = inject(Router);
 
-    protected businessPartnerFacade = inject(BusinessPartnerFacadeService);
+    protected businessPartnerFacade = inject(BusinessPartnerFacade);
     protected authState = inject(AuthState);
 
     protected selectedEntity: BusinessPartner = {

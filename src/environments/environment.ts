@@ -4,6 +4,8 @@ import { FileImplService } from '../services/file/file-impl.service';
 import { AuthenticationImplService } from '../services/authentification/authentication-impl.service';
 import { BusinessPartnerImplService } from '../services/business-partner/business-partner-impl.service';
 import { ContactPersonImplService } from '../services/contact-person/contact-person-impl.service';
+import { InvoiceImplService } from '../services/invoice/invoice-impl.service';
+import { InvoicePositionImplService } from '../services/invoice-position/invoice-position-impl.service';
 
 export const environment = {
     production: false,
@@ -14,5 +16,7 @@ export const environment = {
     invoiceTemplateService: InvoiceTemplateImplService,
     fileService: FileImplService,
     businessPartnersService: BusinessPartnerImplService,
-    contactPersonService: ContactPersonImplService
+    contactPersonService: ContactPersonImplService,
+    invoiceService: InvoiceImplService,
+    invoicePositionService: InvoicePositionImplService
 };

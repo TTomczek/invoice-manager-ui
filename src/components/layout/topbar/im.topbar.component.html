@@ -1,7 +1,7 @@
 <div class="layout-topbar">
     <a class="layout-topbar-logo" routerLink="/dashboard">
         <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-        <span>SAKAI</span>
+        <span>RECHNUNGSMANAGER</span>
     </a>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
@@ -13,6 +13,31 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <p-dropdown [options]="languageOptions" [ngModel]="selectedLanguage" (ngModelChange)="changeLanguage($event)" optionLabel="name">
+            <ng-template pTemplate="selectedItem">
+                @if (selectedLanguage) {
+                    <div class="flex align-items-center gap-2">
+                        <img
+                            [alt]="'flag' + selectedLanguage.name"
+                            src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                            [class]="'flag flag-' + selectedLanguage.code.toLowerCase()"
+                            style="width: 18px" />
+                        <div>{{ selectedLanguage.name }}</div>
+                    </div>
+                }
+            </ng-template>
+            <ng-template let-country pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <img
+                        [alt]="'flag' + country.name"
+                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                        [class]="'flag flag-' + country.code.toLowerCase()"
+                        style="width: 18px" />
+                    <div>{{ country.name }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+
         <button class="p-link layout-topbar-button" (click)="signout()">
             <i class="pi pi-sign-out"></i>
             <span>{{ 'topbar.logout' | translate }}</span>

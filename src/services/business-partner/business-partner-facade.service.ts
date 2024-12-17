@@ -6,7 +6,7 @@ import { BusinessPartner } from '../../models/business-partner.model';
 @Injectable({
     providedIn: 'root'
 })
-export class BusinessPartnerFacadeService {
+export class BusinessPartnerFacade {
 
     private businessPartnerService = inject(BusinessPartnerService);
     private messageService = inject(TranslatableMessageService);

@@ -1,12 +1,50 @@
 import { Injectable } from '@angular/core';
 import { ContactPersonService } from './contact-person.service';
 import { ContactPerson } from '../../models/contact-person.model';
+import { Salutation } from '../../models/salutation';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DefaultContactPersonService implements ContactPersonService {
     private contactPersons: ContactPerson[] = [];
+
+    constructor() {
+        this.contactPersons = [
+            {
+                id: 1,
+                name: 'Mustermann',
+                firstName: 'Max',
+                email: 'max.mustermann@example.de',
+                salutation: Salutation.HERR,
+                businessPartner: 1,
+                address: {
+                    id: 1,
+                    street: 'Musterstraße',
+                    zipCode: '12345',
+                    city: 'Musterstadt',
+                    country: 'Deutschland',
+                    houseNumber: '1',
+                },
+            },
+            {
+                id: 2,
+                name: 'Musterfrau',
+                firstName: 'Maria',
+                email: 'maria.musterfrau@example.de',
+                salutation: Salutation.FRAU,
+                businessPartner: 1,
+                address: {
+                    id: 2,
+                    street: 'Musterstraße',
+                    zipCode: '12345',
+                    city: 'Musterstadt',
+                    country: 'Deutschland',
+                    houseNumber: '1',
+                },
+            },
+        ];
+    }
 
     getContactPersons(): Promise<ContactPerson[] | undefined> {
         return Promise.resolve(this.contactPersons);

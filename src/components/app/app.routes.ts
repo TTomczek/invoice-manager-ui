@@ -7,9 +7,10 @@ import { SalesTaxListComponent } from '../sales-tax-list/sales-tax-list.componen
 import { InvoiceTemplateListComponent } from '../invoice-template-list/invoice-template-list.component';
 import { BusinessPartnersListComponent } from '../business-partners-list/business-partners-list.component';
 import { ContactPersonListComponent } from '../contact-person-list/contact-person-list.component';
+import { InvoicePositionsListComponent } from '../invoice-positions-list/invoice-positions-list.component';
 
 export const appRoutes: Route[] = [
-    {
+   {
         path: '',
         component: IMLayoutComponent,
         children: [
@@ -22,29 +23,33 @@ export const appRoutes: Route[] = [
                 component: InvoiceListComponent
             },
             {
-                path: 'business-partners',
-                component: BusinessPartnersListComponent
+                path: 'invoices/:id/positions',
+                component: InvoicePositionsListComponent,
             },
             {
-              path: 'business-partners/:id/contact-persons',
-                component: ContactPersonListComponent
+                path: 'business-partners',
+                component: BusinessPartnersListComponent,
+            },
+            {
+                path: 'business-partners/:id/contact-persons',
+                component: ContactPersonListComponent,
             },
             {
                 path: 'invoice-templates',
-                component: InvoiceTemplateListComponent
+                component: InvoiceTemplateListComponent,
             },
             {
                 path: 'sales-taxes',
-                component: SalesTaxListComponent
-            }
-        ]
+                component: SalesTaxListComponent,
+            },
+        ],
     },
     {
         path: 'notfound',
-        component: IMNotfoundComponent
+        component: IMNotfoundComponent,
     },
     {
         path: '**',
-        redirectTo: '/notfound'
-    }
+        redirectTo: '/notfound',
+    },
 ];

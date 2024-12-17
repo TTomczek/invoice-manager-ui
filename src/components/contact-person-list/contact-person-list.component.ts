@@ -12,11 +12,7 @@ import { ContactPerson } from '../../models/contact-person.model';
 import { Salutation } from '../../models/salutation';
 import { DropdownModule } from 'primeng/dropdown';
 import { TitleCasePipe } from '@angular/common';
-
-interface DropdownItem {
-    key: string;
-    value: string;
-}
+import { DropdownItem } from '../../commons/dropdown-item';
 
 @Component({
     selector: 'im-contact-person-list',
@@ -86,12 +82,10 @@ export class ContactPersonListComponent {
     }
 
     protected selectEntity(event: TableRowSelectEvent) {
-        console.log('selectEntity');
         this.selectedEntity.set({ ...event.data, businessPartner: this.businessPartnerId });
     }
 
     protected unselectEntity() {
-        console.log('unselectEntity');
         this.selectedEntity.set({
             id: undefined,
             name: '',

@@ -3,7 +3,6 @@ import { inject, Injectable } from '@angular/core';
 import { BusinessPartner } from '../../models/business-partner.model';
 import { ContactPerson } from '../../models/contact-person.model';
 import { DefaultContactPersonService } from '../contact-person/default-contact-person.service';
-import { lastValueFrom } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'

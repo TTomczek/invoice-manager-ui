@@ -16,6 +16,8 @@ import { BASE_PATH } from '@invoice-manager/api-typescript-angular-client';
 import { ToastModule } from 'primeng/toast';
 import { BusinessPartnerService } from '../../services/business-partner/business-partner.service';
 import { ContactPersonService } from '../../services/contact-person/contact-person.service';
+import { InvoiceService } from '../../services/invoice/invoice.service';
+import { InvoicePositionService } from '../../services/invoice-position/invoice-position.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -61,6 +63,14 @@ export function provideIMServices() {
         {
             provide: ContactPersonService,
             useClass: environment.contactPersonService,
+        },
+        {
+            provide: InvoiceService,
+            useClass: environment.invoiceService,
+        },
+        {
+            provide: InvoicePositionService,
+            useClass: environment.invoicePositionService,
         }
     ];
 }

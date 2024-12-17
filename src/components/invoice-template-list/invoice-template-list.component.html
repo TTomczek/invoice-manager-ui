@@ -29,29 +29,28 @@
         </div>
         <div class="card col-12">
             <form class="col-12">
-                <div class="flex flex-column gap-2">
-                    <label for="name">{{ 'invoicetemplate.form.label.name' | translate }}</label>
+                <div class="flex flex-column gap-2 mb-4">
+                    <label for="name" class="mt-2">{{ 'invoicetemplate.form.label.name' | translate }}</label>
                     <input pInputText type="text" class="form-control" id="name" [(ngModel)]="selectedEntity.name"
                            name="name"
                            required>
-                    <label for="firstTop">{{ 'invoicetemplate.form.label.margintopfirstpage' | translate }}</label>
+                    <label for="firstTop" class="mt-2">{{ 'invoicetemplate.form.label.margintopfirstpage' | translate }}</label>
                     <input pInputText type="number" step="5" class="form-control" id="firstTop"
                            [(ngModel)]="selectedEntity.marginTopFirstPage"
                            name="firstTop" required>
-                    <label
-                        for="firstBottom">{{ 'invoicetemplate.form.label.marginbottomfirstpage' | translate }}</label>
+                    <label for="firstBottom" class="mt-2">{{ 'invoicetemplate.form.label.marginbottomfirstpage' | translate }}</label>
                     <input pInputText type="number" step="5" class="form-control" id="firstBottom"
                            [(ngModel)]="selectedEntity.marginBottomFirstPage"
                            name="firstBottom" required>
-                    <label for="otherTop">{{ 'invoicetemplate.form.label.margintopotherpage' | translate }}</label>
+                    <label for="otherTop" class="mt-2">{{ 'invoicetemplate.form.label.margintopotherpage' | translate }}</label>
                     <input pInputText type="number" step="5" class="form-control" id="otherTop"
                            [(ngModel)]="selectedEntity.marginTopOtherPages"
                            name="otherTop" required>
-                    <label for="otherBottom">{{ 'invoicetemplate.form.label.marginbottomotherpage' | translate }}</label>
+                    <label for="otherBottom" class="mt-2">{{ 'invoicetemplate.form.label.marginbottomotherpage' | translate }}</label>
                     <input pInputText type="number" step="5" class="form-control" id="otherBottom"
                            [(ngModel)]="selectedEntity.marginBottomOtherPages"
                            name="otherBottom" required>
-                    <label for="fileInput">{{ 'invoicetemplate.form.label.file' | translate}}</label>
+                    <label for="fileInput" class="mt-2">{{ 'invoicetemplate.form.label.file' | translate}}</label>
                     <p-fileUpload
                         #backgroundPdfFileUpload
                         id="fileInput"

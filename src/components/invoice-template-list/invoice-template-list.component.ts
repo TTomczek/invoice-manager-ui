@@ -26,7 +26,7 @@ import { TranslatableMessageService } from '../../services/translatable-message.
         FileUploadModule,
     ],
     templateUrl: './invoice-template-list.component.html',
-    styleUrl: './invoice-template-list.component.css',
+    styleUrl: './invoice-template-list.component.scss',
 })
 export class InvoiceTemplateListComponent {
     protected invoiceTemplateFacade = inject(InvoiceTemplateFacade);
