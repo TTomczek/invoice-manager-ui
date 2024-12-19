@@ -8,6 +8,7 @@ import { Salutation } from '../../models/salutation';
 })
 export class DefaultContactPersonService implements ContactPersonService {
     private contactPersons: ContactPerson[] = [];
+    private nextId = 3;
 
     constructor() {
         this.contactPersons = [
@@ -47,11 +48,12 @@ export class DefaultContactPersonService implements ContactPersonService {
     }
 
     getContactPersons(): Promise<ContactPerson[] | undefined> {
-        return Promise.resolve(this.contactPersons);
+        return Promise.resolve([...this.contactPersons]);
     }
 
     createContactPerson(contactPerson: ContactPerson): Promise<ContactPerson | undefined> {
-        contactPerson.id = this.contactPersons.length + Math.random() * 10;
+        contactPerson.id = this.nextId;
+        this.nextId++;
         this.contactPersons.push(contactPerson);
         return Promise.resolve(contactPerson);
     }

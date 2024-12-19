@@ -45,14 +45,14 @@
                                     optionLabel="value" dataKey="key" id="unit"></p-dropdown>
                     </div>
                     @if (selectedEntity().id) {
-                        <button pButton type="button" class="btn btn-primary"
+                        <button pButton type="button" class="btn btn-primary mr-1" name="update"
                                 (click)="updateInvoicePosition(selectedEntity())" [disabled]="canNotBeModified()">{{ 'invoiceposition.form.button.update' | translate }}
                         </button>
-                        <button pButton type="button" class="btn btn-danger"
+                        <button pButton type="button" class="btn btn-danger" name="delete"
                                 (click)="deleteInvoicePosition(selectedEntity())" [disabled]="canNotBeModified()">{{ 'invoiceposition.form.button.delete' | translate }}
                         </button>
                     } @else {
-                        <button pButton type="button" class="btn btn-primary"
+                        <button pButton type="button" class="btn btn-primary" name="create"
                                 (click)="createInvoicePosition(selectedEntity())">{{ 'invoiceposition.form.button.create' | translate }}
                         </button>
                     }

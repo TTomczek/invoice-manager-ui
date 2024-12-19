@@ -10,9 +10,51 @@ import { DefaultInvoicePositionService } from '../invoice-position/default-invoi
 export class DefaultInvoiceService implements InvoiceService{
     private invoicePositionService: DefaultInvoicePositionService = inject(DefaultInvoicePositionService);
     private invoices: Invoice[] = [];
+    private nextId = 3;
+
+    constructor() {
+        const invoices: Invoice[] = [
+            {
+                id: 1,
+                description: 'Neue Heizung',
+                perMail: false,
+                preText: 'Herzlichen Dank für Ihren Auftrag. Wir freuen uns, Ihnen die Rechnung für die erbrachten Leistungen zu senden.',
+                postText: 'Wir danken Ihnen für Ihren Auftrag und freuen uns auf eine weiterhin gute Zusammenarbeit.',
+                serviceProvidedFrom: new Date('2021-01-01'),
+                serviceProvidedTo: new Date('2021-01-31'),
+                orderNumber: '12345',
+                file: undefined,
+                salesTax: 1,
+                invoicePositions: [],
+                receiver: 1,
+                invoiceTemplate: 1,
+                customer: 1,
+                paid: false,
+            },
+            {
+                id: 2,
+                description: 'Neue Solaranlage',
+                perMail: true,
+                preText: 'Herzlichen Dank für Ihren Auftrag. Wir freuen uns, Ihnen die Rechnung für die erbrachten Leistungen zu senden.',
+                postText: 'Wir danken Ihnen für Ihren Auftrag und freuen uns auf eine weiterhin gute Zusammenarbeit.',
+                serviceProvidedFrom: new Date('2023-01-01'),
+                serviceProvidedTo: new Date('2023-01-31'),
+                orderNumber: '567345',
+                file: 1,
+                salesTax: 1,
+                invoicePositions: [1],
+                receiver: undefined,
+                invoiceTemplate: 1,
+                customer: 2,
+                paid: true,
+            }
+        ];
+        this.invoices.push(...invoices);
+    }
 
     createInvoice(invoice: Invoice): Promise<Invoice | undefined> {
-        invoice.id = this.invoices.length + Math.random() * 10;
+        invoice.id = this.nextId;
+        this.nextId += 1;
         this.invoices.push(invoice);
         return Promise.resolve(invoice);
     }
@@ -30,7 +72,7 @@ export class DefaultInvoiceService implements InvoiceService{
     }
 
     getInvoices(): Promise<Invoice[] | undefined> {
-        return Promise.resolve(this.invoices);
+        return Promise.resolve([...this.invoices]);
     }
 
     updateInvoice(invoiceId: number, invoice:Invoice): Promise<Invoice | undefined> {
@@ -47,7 +89,7 @@ export class DefaultInvoiceService implements InvoiceService{
         if (!invoicePositions) {
             return undefined;
         }
-        return invoicePositions.filter((invoicePosition) => invoicePosition.invoice === invoiceId);
+        return invoicePositions.filter((invoicePosition) => invoicePosition.invoice == invoiceId);
     }
 
     generateInvoicePdfById(invoiceId: number): Promise<number> {

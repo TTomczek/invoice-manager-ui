@@ -7,6 +7,7 @@ import { InvoiceTemplate } from '../../models/invoice-template.model';
 })
 export class DefaultInvoiceTemplateService implements InvoiceTemplateService {
     private invoiceTemplates: InvoiceTemplate[] = [];
+    private nextId = 3;
 
     constructor() {
         this.invoiceTemplates.push(
@@ -32,7 +33,8 @@ export class DefaultInvoiceTemplateService implements InvoiceTemplateService {
     }
 
     async createInvoiceTemplate(invoiceTemplate: InvoiceTemplate): Promise<InvoiceTemplate | undefined> {
-        invoiceTemplate.id = this.invoiceTemplates.length + Math.random() + 10;
+        invoiceTemplate.id = this.nextId;
+        this.nextId++;
         this.invoiceTemplates.push(invoiceTemplate);
         return Promise.resolve(invoiceTemplate);
     }
@@ -50,7 +52,7 @@ export class DefaultInvoiceTemplateService implements InvoiceTemplateService {
     }
 
     getAllInvoiceTemplates(): Promise<InvoiceTemplate[] | undefined> {
-        return Promise.resolve(this.invoiceTemplates);
+        return Promise.resolve([...this.invoiceTemplates]);
     }
 
     getInvoiceTemplateById(invoiceTemplateId: number): Promise<InvoiceTemplate | undefined> {

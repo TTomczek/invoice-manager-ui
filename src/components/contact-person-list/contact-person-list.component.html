@@ -43,19 +43,19 @@
                                name="email"
                                required>
                         <label for="salutation" class="mt-2">{{ 'contactpersons.form.label.salutation' | translate }}</label>
-
-                    </div><p-dropdown [options]="salutationOptions()" [ngModel]="currentSelectedSalutation()" (ngModelChange)="setSalutationFromDropDown($event)" name="salutation"
-                                      optionLabel="value" dataKey="key" id="salutation"></p-dropdown>
+                        <p-dropdown [options]="salutationOptions()" [ngModel]="currentSelectedSalutation()" (ngModelChange)="setSalutationFromDropDown($event)" name="salutation"
+                                          optionLabel="value" dataKey="key" id="salutation"></p-dropdown>
+                    </div>
                     <im-address-form [(address)]="selectedEntity().address"></im-address-form>
                     @if (selectedEntity().id) {
-                        <button pButton type="button" class="btn btn-primary"
+                        <button pButton type="button" class="btn btn-primary mr-1" name="update"
                                 (click)="updateContactPerson(selectedEntity())">{{ 'contactpersons.form.button.update' | translate }}
                         </button>
-                        <button pButton type="button" class="btn btn-danger"
+                        <button pButton type="button" class="btn btn-danger" name="delete"
                                 (click)="deleteContactPerson(selectedEntity())">{{ 'contactpersons.form.button.delete' | translate }}
                         </button>
                     } @else {
-                        <button pButton type="button" class="btn btn-primary"
+                        <button pButton type="button" class="btn btn-primary" name="create"
                                 (click)="createContactPerson(selectedEntity())">{{ 'contactpersons.form.button.create' | translate }}
                         </button>
                     }

@@ -7,6 +7,7 @@ import { SalesTax } from '../../models/sales-tax.model';
 })
 export class DefaultSalesTaxService implements SalesTaxService {
     private taxes: SalesTax[] = [];
+    private nextId = 5;
 
     constructor() {
         this.taxes.push(
@@ -22,21 +23,11 @@ export class DefaultSalesTaxService implements SalesTaxService {
             },
             {
                 id: 3,
-                name: 'Sales Tax',
-                rate: 0.07,
-            },
-            {
-                id: 4,
-                name: 'Local Tax',
-                rate: 0.03,
-            },
-            {
-                id: 5,
                 name: 'State Tax',
                 rate: 0.05,
             },
             {
-                id: 6,
+                id: 4,
                 name: 'Federal Tax',
                 rate: 0.1,
             }
@@ -44,11 +35,12 @@ export class DefaultSalesTaxService implements SalesTaxService {
     }
 
     getAllSalesTaxes(): Promise<SalesTax[] | undefined> {
-        return Promise.resolve(this.taxes);
+        return Promise.resolve([...this.taxes]);
     }
 
     createSalesTax(salesTax: SalesTax): Promise<SalesTax | undefined> {
-        salesTax.id = this.taxes.length + Math.random() + 10;
+        salesTax.id = this.nextId;
+        this.nextId++;
         this.taxes.push(salesTax);
         return Promise.resolve(salesTax);
     }

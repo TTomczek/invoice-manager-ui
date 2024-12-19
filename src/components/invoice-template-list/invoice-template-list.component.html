@@ -61,14 +61,14 @@
                         [maxFileSize]="maxFileSize" />
                 </div>
                 @if (selectedEntity.id) {
-                    <button pButton type="button" class="btn btn-primary"
+                    <button pButton type="button" class="btn btn-primary mr-1" name="update"
                             (click)="updateInvoiceTemplate(selectedEntity)">{{ 'invoicetemplate.form.button.update' | translate }}
                     </button>
-                    <button pButton type="button" class="btn btn-danger"
+                    <button pButton type="button" class="btn btn-danger" name="delete"
                             (click)="deleteInvoiceTemplate(selectedEntity)">{{ 'invoicetemplate.form.button.delete' | translate }}
                     </button>
                 } @else {
-                    <button pButton type="button" class="btn btn-primary"
+                    <button pButton type="button" class="btn btn-primary" name="create"
                             (click)="createInvoiceTemplate(selectedEntity)">{{ 'salestax.form.button.create' | translate }}
                     </button>
                 }

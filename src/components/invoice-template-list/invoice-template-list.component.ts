@@ -72,12 +72,10 @@ export class InvoiceTemplateListComponent {
         if (this.fileToUpload) {
             const backgroundPdfId = await this.invoiceTemplateFacade.uploadBackgroundPdf(this.fileToUpload);
             invoiceTemplate.backgroundPdf = backgroundPdfId;
-            this.invoiceTemplateFacade.createInvoiceTemplate(invoiceTemplate);
-            this.unselectEntity();
-            this.emptyFileToUpload();
-        } else {
-            this.messageService.add({ key: 'error.invoiceTemplate.create.missing-file', severity: 'error' });
         }
+        this.invoiceTemplateFacade.createInvoiceTemplate(invoiceTemplate);
+        this.unselectEntity();
+        this.emptyFileToUpload();
     }
 
     async updateInvoiceTemplate(invoiceTemplate: InvoiceTemplate) {

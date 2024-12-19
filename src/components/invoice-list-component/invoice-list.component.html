@@ -30,8 +30,8 @@
             <div class="card col-12">
                 <form class="col-12">
                     <div class="flex flex-column gap-2 mb-4">
-                        <label for="ordnernumber" class="mt-2">{{ 'invoice.form.label.ordernumber' | translate }}</label>
-                        <input pInputText type="text" class="form-control" id="ordnernumber" [(ngModel)]="selectedEntity.orderNumber"
+                        <label for="ordernumber" class="mt-2">{{ 'invoice.form.label.ordernumber' | translate }}</label>
+                        <input pInputText type="text" class="form-control" id="ordernumber" [(ngModel)]="selectedEntity.orderNumber"
                                name="ordernumber"
                                required>
                         <label for="description" class="mt-2">{{ 'invoice.form.label.description' | translate }}</label>
@@ -68,14 +68,14 @@
                         <p-checkbox id="paid" [(ngModel)]="selectedEntity.paid" name="paid" [binary]="true" inputId="binary"></p-checkbox>
                     </div>
                     @if (selectedEntity.id) {
-                        <button pButton type="button" class="btn btn-primary"
-                                (click)="updateInvoice(selectedEntity)" [disabled]="canBeModified">{{ 'invoice.form.button.update' | translate }}
+                        <button pButton type="button" class="btn btn-primary mr-1" name="update"
+                                (click)="updateInvoice(selectedEntity)" [disabled]="modifiable">{{ 'invoice.form.button.update' | translate }}
                         </button>
-                        <button pButton type="button" class="btn btn-danger"
-                                (click)="deleteInvoice(selectedEntity)" [disabled]="canBeModified">{{ 'invoice.form.button.delete' | translate }}
+                        <button pButton type="button" class="btn btn-danger" name="delete"
+                                (click)="deleteInvoice(selectedEntity)" [disabled]="!deleteable">{{ 'invoice.form.button.delete' | translate }}
                         </button>
                     } @else {
-                        <button pButton type="button" class="btn btn-primary"
+                        <button pButton type="button" class="btn btn-primary" name="create"
                                 (click)="createInvoice(selectedEntity)">{{ 'invoice.form.button.create' | translate }}
                         </button>
                     }

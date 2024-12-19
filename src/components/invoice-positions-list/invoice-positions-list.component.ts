@@ -29,7 +29,7 @@ export class InvoicePositionsListComponent {
     private router = inject(Router);
 
     private invoiceId: number | undefined;
-    private invoice: Invoice | undefined;
+    private readonly invoice = signal<Invoice | undefined>(undefined)
 
     @Input() set id(value: number) {
         if (!value || isNaN(value)) {
@@ -38,7 +38,8 @@ export class InvoicePositionsListComponent {
         this.invoiceId = value;
         this.selectedEntity().invoice = value;
         this.invoicePositionFacade.loadInvoicePositions(value);
-        this.invoice = this.invoiceFacade.getInvoiceById(value);
+        this.invoiceFacade.loadInvoices();
+        this.invoice.set(this.invoiceFacade.getInvoiceById(value));
     }
 
     protected readonly selectedEntity: WritableSignal<InvoicePosition> = signal({
@@ -75,7 +76,7 @@ export class InvoicePositionsListComponent {
     });
 
     protected canNotBeModified = computed(() => {
-        const paid = this.invoice?.paid;
+        const paid = this.invoice()?.paid;
         return paid;
     })
 

@@ -76,7 +76,8 @@ export class InvoiceListComponent {
         paid: false,
     };
 
-    protected canBeModified = true;
+    protected modifiable = true;
+    protected deleteable = true;
 
     constructor() {
         this.invoiceFacade.loadInvoices();
@@ -123,8 +124,8 @@ export class InvoiceListComponent {
 
     protected selectEntity(event: TableRowSelectEvent): void {
         this.selectedEntity = {...this.selectedEntity,  ...event.data };
-        this.canBeModified = this.invoiceFacade.getInvoiceById(this.selectedEntity.id ?? -1)?.paid ?? false;
-        console.log(this.selectedEntity.serviceProvidedFrom);
+        this.modifiable = this.checkModifiable();
+        this.deleteable = this.checkDeleteable();
     }
 
     protected unselectEntity(): void {
@@ -145,7 +146,8 @@ export class InvoiceListComponent {
             invoicePositions: [],
             paid: false,
         };
-        this.canBeModified = true;
+        this.modifiable = true;
+        this.deleteable = true;
     }
 
     protected navigateToInvoicePositions(id: number): void {
@@ -206,5 +208,23 @@ export class InvoiceListComponent {
 
     protected generateInvoicePdf(invoiceId: number): void {
         this.invoiceFacade.generateInvoicePdf(invoiceId);
+    }
+
+    private checkModifiable() {
+        if (this.selectedEntity.id) {
+            return this.invoiceFacade.getInvoiceById(this.selectedEntity.id)?.paid ?? false;
+        }
+        return false;
+    }
+
+    private checkDeleteable() {
+        if (this.selectedEntity.id) {
+            const invoice = this.invoiceFacade.getInvoiceById(this.selectedEntity.id)
+            if (!invoice) {
+                return true;
+            }
+            return !(invoice.invoicePositions.length > 0);
+        }
+        return true;
     }
 }

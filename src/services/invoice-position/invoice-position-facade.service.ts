@@ -45,7 +45,6 @@ export class InvoicePositionFacade {
     updateInvoicePosition(invoicePositionId: number, invoicePosition: InvoicePosition): void {
         this.invoicePositionService.updateInvoicePosition(invoicePositionId, invoicePosition).then((updatedInvoicePosition) => {
             if (updatedInvoicePosition) {
-                console.log('updatedInvoicePosition', updatedInvoicePosition);
                 this.invoicePositions.set(this.getInvoicePositions().map((invoicePosition) => invoicePosition.id === updatedInvoicePosition.id ? updatedInvoicePosition : invoicePosition));
             }
         });
