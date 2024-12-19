@@ -15,13 +15,7 @@ export class IMMenuComponent {
     menuItems: MenuItem[] = [
         {
             label: '',
-            // routerLink: ['/dashboard'],
             items: [
-                {
-                    label: 'sidebar.items.dashboard',
-                    icon: 'pi pi-fw pi-home',
-                    routerLink: ['/dashboard'],
-                },
                 {
                     label: 'sidebar.items.invoices',
                     icon: 'pi pi-fw pi-file',

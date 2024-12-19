@@ -13,7 +13,7 @@ import { AuthState } from '../../state/auth-state.service';
     standalone: true,
     imports: [TableModule, TranslatePipe, FormsModule, InputTextModule, ButtonDirective],
     templateUrl: './sales-tax-list.component.html',
-    styleUrl: './sales-tax-list.component.css',
+    styleUrl: './sales-tax-list.component.scss',
 })
 export class SalesTaxListComponent {
     protected salesTaxFacade = inject(SalesTaxFacade);

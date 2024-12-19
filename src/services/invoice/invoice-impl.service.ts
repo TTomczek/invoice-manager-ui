@@ -1,11 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { InvoiceService } from './invoice.service';
-import { InvoicesService } from '@invoice-manager/api-typescript-angular-client';
+import { DownloadFileDTO, InvoicesService } from '@invoice-manager/api-typescript-angular-client';
 import { InvoiceConverterService } from '../../models/converter/invoice-converter.service';
 import { InvoicePositionConverterService } from '../../models/converter/invoice-position-converter.service';
 import { lastValueFrom } from 'rxjs';
 import { Invoice } from '../../models/invoice.model';
 import { InvoicePosition } from '../../models/invoice-position.model';
+import { FileConverterService } from '../../models/converter/file-converter.service';
+import { FileWithContent } from '../../models/file-with-content';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +16,7 @@ export class InvoiceImplService implements InvoiceService {
     private invoicesService: InvoicesService = inject(InvoicesService);
     private invoiceConverter: InvoiceConverterService = inject(InvoiceConverterService);
     private invoicePositionConverter: InvoicePositionConverterService = inject(InvoicePositionConverterService);
+    private fileConverter: FileConverterService = inject(FileConverterService);
 
     public async createInvoice(invoice: Invoice): Promise<Invoice | undefined> {
         const invoiceDto = this.invoiceConverter.toDTO(invoice);
@@ -79,4 +82,10 @@ export class InvoiceImplService implements InvoiceService {
             }
         );
     }
+
+    public async generateInvoicePdfById(invoiceId: number): Promise<number> {
+        return lastValueFrom(this.invoicesService.getInvoicePdfById(invoiceId));
+    }
+
+
 }

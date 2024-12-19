@@ -2,16 +2,10 @@ import { AuthenticationMockService } from '../services/authentification/authenti
 import { DefaultSalesTaxService } from '../services/sales-tax/default-sales-tax.service';
 import { DefaultInvoiceTemplateService } from '../services/invoice-template/default-invoice-template.service';
 import { DefaultFileService } from '../services/file/default-file.service';
-import { SalesTaxImplService } from '../services/sales-tax/sales-tax-impl.service';
-import { InvoiceTemplateImplService } from '../services/invoice-template/invoice-template-impl.service';
-import { FileImplService } from '../services/file/file-impl.service';
 import { DefaultBusinessPartnerService } from '../services/business-partner/default-business-partner.service';
-import { BusinessPartnerImplService } from '../services/business-partner/business-partner-impl.service';
-import { ContactPersonImplService } from '../services/contact-person/contact-person-impl.service';
 import { DefaultContactPersonService } from '../services/contact-person/default-contact-person.service';
-import { InvoiceImplService } from '../services/invoice/invoice-impl.service';
-import { InvoicePositionService } from '../services/invoice-position/invoice-position.service';
-import { InvoicePositionImplService } from '../services/invoice-position/invoice-position-impl.service';
+import { DefaultInvoiceService } from '../services/invoice/default-invoice.service';
+import { DefaultInvoicePositionService } from '../services/invoice-position/default-invoice-position.service';
 
 // TODO Switch back to Default Services
 export const environment = {
@@ -19,11 +13,11 @@ export const environment = {
     authenticationProvider: AuthenticationMockService,
     basePath: '/invoice-manager-server',
     maxFileSize: 1048576 * 5, // 5MiB
-    salesTaxService: SalesTaxImplService,
-    invoiceTemplateService: InvoiceTemplateImplService,
-    fileService: FileImplService,
-    businessPartnersService: BusinessPartnerImplService,
-    contactPersonService: ContactPersonImplService,
-    invoiceService: InvoiceImplService,
-    invoicePositionService: InvoicePositionImplService
+    salesTaxService: DefaultSalesTaxService,
+    invoiceTemplateService: DefaultInvoiceTemplateService,
+    fileService: DefaultFileService,
+    businessPartnersService: DefaultBusinessPartnerService,
+    contactPersonService: DefaultContactPersonService,
+    invoiceService: DefaultInvoiceService,
+    invoicePositionService: DefaultInvoicePositionService
 };

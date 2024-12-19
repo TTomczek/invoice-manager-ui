@@ -32,14 +32,14 @@
                                name="rate" required>
                     </div>
                     @if (selectedEntity.id) {
-                        <button pButton type="button" class="btn btn-primary"
+                        <button pButton type="button" class="btn btn-primary" name="update"
                                 (click)="updateSalesTax(selectedEntity)">{{ 'salestax.form.button.update' | translate }}
                         </button>
-                        <button pButton type="button" class="btn btn-danger"
+                        <button pButton type="button" class="btn btn-danger" name="delete"
                                 (click)="deleteSalesTax(selectedEntity)">{{ 'salestax.form.button.delete' | translate }}
                         </button>
                     } @else {
-                        <button pButton type="button" class="btn btn-primary"
+                        <button pButton type="button" class="btn btn-primary"  name="create"
                                 (click)="createSalesTax(selectedEntity)">{{ 'salestax.form.button.create' | translate }}
                         </button>
                     }

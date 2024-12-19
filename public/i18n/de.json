@@ -299,10 +299,12 @@
     "invoice": {
         "table": {
             "header": {
+                "paid": "Bezahlt",
                 "description": "Beschreibung",
                 "ordernumber": "Bestellnummer",
                 "positioncount": "Anzahl Positionen",
-                "topositions": "Zu Positionen"
+                "topositions": "Zu Positionen",
+                "generatepdf": "PDF generieren"
             }
         },
         "form": {

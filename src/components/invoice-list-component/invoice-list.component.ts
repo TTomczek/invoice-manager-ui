@@ -64,8 +64,8 @@ export class InvoiceListComponent {
         description: '',
         preText: '',
         postText: '',
-        serviceProvidedFrom: '',
-        serviceProvidedTo: '',
+        serviceProvidedFrom: undefined,
+        serviceProvidedTo: undefined,
         perMail: true,
         salesTax: undefined,
         invoiceTemplate: undefined,
@@ -75,6 +75,8 @@ export class InvoiceListComponent {
         invoicePositions: [],
         paid: false,
     };
+
+    protected canBeModified = true;
 
     constructor() {
         this.invoiceFacade.loadInvoices();
@@ -121,6 +123,8 @@ export class InvoiceListComponent {
 
     protected selectEntity(event: TableRowSelectEvent): void {
         this.selectedEntity = {...this.selectedEntity,  ...event.data };
+        this.canBeModified = this.invoiceFacade.getInvoiceById(this.selectedEntity.id ?? -1)?.paid ?? false;
+        console.log(this.selectedEntity.serviceProvidedFrom);
     }
 
     protected unselectEntity(): void {
@@ -130,8 +134,8 @@ export class InvoiceListComponent {
             description: '',
             preText: '',
             postText: '',
-            serviceProvidedFrom: '',
-            serviceProvidedTo: '',
+            serviceProvidedFrom: undefined,
+            serviceProvidedTo: undefined,
             perMail: true,
             salesTax: undefined,
             invoiceTemplate: undefined,
@@ -141,6 +145,7 @@ export class InvoiceListComponent {
             invoicePositions: [],
             paid: false,
         };
+        this.canBeModified = true;
     }
 
     protected navigateToInvoicePositions(id: number): void {
@@ -197,5 +202,9 @@ export class InvoiceListComponent {
             this.selectedEntity.customer = event;
             this.contactPersonFacade.loadContactPersons(event);
         }
+    }
+
+    protected generateInvoicePdf(invoiceId: number): void {
+        this.invoiceFacade.generateInvoicePdf(invoiceId);
     }
 }

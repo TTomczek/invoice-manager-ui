@@ -8,4 +8,5 @@ export abstract class InvoiceService {
     abstract updateInvoice(invoiceId: number, invoice: Invoice): Promise<Invoice | undefined>;
     abstract deleteInvoice(id: number): Promise<Invoice | undefined>;
     abstract getInvoicePositionsOfInvoice(invoiceId: number): Promise<InvoicePosition[] | undefined>;
+    abstract generateInvoicePdfById(invoiceId: number): Promise<number>;
 }

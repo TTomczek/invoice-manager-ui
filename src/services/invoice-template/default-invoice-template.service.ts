@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { InvoiceTemplateService } from './invoice-template.service';
 import { InvoiceTemplate } from '../../models/invoice-template.model';
 

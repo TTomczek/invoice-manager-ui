@@ -4,8 +4,8 @@ export interface Invoice {
   perMail: boolean;
   preText: string;
   postText: string;
-  serviceProvidedFrom: string;
-  serviceProvidedTo: string;
+  serviceProvidedFrom: Date | undefined;
+  serviceProvidedTo: Date | undefined;
   orderNumber: string;
   file: number | undefined;
   salesTax: number | undefined;

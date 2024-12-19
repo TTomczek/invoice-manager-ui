@@ -24,38 +24,40 @@
                 </ng-template>
             </p-table>
         </div>
-        <div class="card col-12">
-            <form class="col-12">
-                <div class="flex flex-column gap-2 mb-4">
-                    <label for="description" class="mt-2">{{ 'invoiceposition.form.label.description' | translate }}</label>
-                    <input pInputText type="text" class="form-control" id="description" [(ngModel)]="selectedEntity().description"
-                           name="description"
-                           required>
-                    <label for="quantity" class="mt-2">{{ 'invoiceposition.form.label.quantity' | translate }}</label>
-                    <input pInputText type="text" class="form-control" id="quantity"
-                           [(ngModel)]="selectedEntity().quantity"
-                           name="quantity" required>
-                    <label for="price" class="mt-2">{{ 'invoiceposition.form.label.price' | translate }}</label>
-                    <input pInputText type="number" step="100" class="form-control" id="price"
-                           [(ngModel)]="selectedEntity().pricePerUnitInCents"
-                           name="price" required>
-                    <label for="unit" class="mt-2">{{ 'invoiceposition.form.label.unit' | translate }}</label>
-                    <p-dropdown [options]="unitOptions()" [ngModel]="currentSelectedUnit()" (ngModelChange)="setUnitFromDropDown($event)" name="unit"
-                                optionLabel="value" dataKey="key" id="unit"></p-dropdown>
-                </div>
-                @if (selectedEntity().id) {
-                    <button pButton type="button" class="btn btn-primary"
-                            (click)="updateInvoicePosition(selectedEntity())">{{ 'invoiceposition.form.button.update' | translate }}
-                    </button>
-                    <button pButton type="button" class="btn btn-danger"
-                            (click)="deleteInvoicePosition(selectedEntity())">{{ 'invoiceposition.form.button.delete' | translate }}
-                    </button>
-                } @else {
-                    <button pButton type="button" class="btn btn-primary"
-                            (click)="createInvoicePosition(selectedEntity())">{{ 'invoiceposition.form.button.create' | translate }}
-                    </button>
-                }
-            </form>
-        </div>
+        @if (authState.userCanEdit()) {
+            <div class="card col-12">
+                <form class="col-12">
+                    <div class="flex flex-column gap-2 mb-4">
+                        <label for="description" class="mt-2">{{ 'invoiceposition.form.label.description' | translate }}</label>
+                        <input pInputText type="text" class="form-control" id="description" [(ngModel)]="selectedEntity().description"
+                               name="description"
+                               required>
+                        <label for="quantity" class="mt-2">{{ 'invoiceposition.form.label.quantity' | translate }}</label>
+                        <input pInputText type="text" class="form-control" id="quantity"
+                               [(ngModel)]="selectedEntity().quantity"
+                               name="quantity" required>
+                        <label for="price" class="mt-2">{{ 'invoiceposition.form.label.price' | translate }}</label>
+                        <input pInputText type="number" step="100" class="form-control" id="price"
+                               [(ngModel)]="selectedEntity().pricePerUnitInCents"
+                               name="price" required>
+                        <label for="unit" class="mt-2">{{ 'invoiceposition.form.label.unit' | translate }}</label>
+                        <p-dropdown [options]="unitOptions()" [ngModel]="currentSelectedUnit()" (ngModelChange)="setUnitFromDropDown($event)" name="unit"
+                                    optionLabel="value" dataKey="key" id="unit"></p-dropdown>
+                    </div>
+                    @if (selectedEntity().id) {
+                        <button pButton type="button" class="btn btn-primary"
+                                (click)="updateInvoicePosition(selectedEntity())" [disabled]="canNotBeModified()">{{ 'invoiceposition.form.button.update' | translate }}
+                        </button>
+                        <button pButton type="button" class="btn btn-danger"
+                                (click)="deleteInvoicePosition(selectedEntity())" [disabled]="canNotBeModified()">{{ 'invoiceposition.form.button.delete' | translate }}
+                        </button>
+                    } @else {
+                        <button pButton type="button" class="btn btn-primary"
+                                (click)="createInvoicePosition(selectedEntity())">{{ 'invoiceposition.form.button.create' | translate }}
+                        </button>
+                    }
+                </form>
+            </div>
+        }
     </div>
 </div>

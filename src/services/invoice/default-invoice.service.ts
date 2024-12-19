@@ -49,4 +49,14 @@ export class DefaultInvoiceService implements InvoiceService{
         }
         return invoicePositions.filter((invoicePosition) => invoicePosition.invoice === invoiceId);
     }
+
+    generateInvoicePdfById(invoiceId: number): Promise<number> {
+        if (invoiceId === 1) {
+            return Promise.resolve(1);
+        } else {
+            return Promise.reject('Invoice not found');
+        }
+    }
+
+
 }

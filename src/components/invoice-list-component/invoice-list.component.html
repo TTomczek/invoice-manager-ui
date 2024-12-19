@@ -6,18 +6,22 @@
                      selectionMode="single" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
                 <ng-template pTemplate="header">
                     <tr>
+                        <th>{{ 'invoice.table.header.paid' | translate }}</th>
                         <th>{{ 'invoice.table.header.description' | translate }}</th>
                         <th>{{ 'invoice.table.header.ordernumber' | translate }}</th>
                         <th>{{ 'invoice.table.header.positioncount' | translate }}</th>
                         <th>{{ 'invoice.table.header.topositions' | translate }}</th>
+                        <th>{{ 'invoice.table.header.generatepdf' | translate }}</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-invoice>
                     <tr [pSelectableRow]="invoice">
+                        <td><p-checkbox [ngModel]="invoice.paid" name="paid" [readonly]="true" [binary]="true" inputId="binary"></p-checkbox></td>
                         <td>{{ invoice.description }}</td>
                         <td>{{ invoice.orderNumber }}</td>
                         <td>{{ invoice.invoicePositions.length }}</td>
                         <td><button role="button" pButton (click)="navigateToInvoicePositions(invoice.id)"><span class="pi pi-arrow-right"></span></button></td>
+                        <td><button role="button" pButton (click)="generateInvoicePdf(invoice.id)"><span class="pi pi-download"></span></button></td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -47,7 +51,7 @@
                         <p-calendar id="serviceProvidedTo" [(ngModel)]="selectedEntity.serviceProvidedTo"
                                     name="serviceProvidedTo" required></p-calendar>
                         <label for="perMail" class="mt-2">{{ 'invoice.form.label.permail' | translate }}</label>
-                        <p-checkbox id="perMail" [ngModel]="selectedEntity.perMail" name="perMail" [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox id="perMail" [(ngModel)]="selectedEntity.perMail" name="perMail" [binary]="true" inputId="binary"></p-checkbox>
                         <label for="salesTax" class="mt-2">{{ 'invoice.form.label.salestax' | translate }}</label>
                         <p-dropdown [options]="salesTaxOptions()" [(ngModel)]="selectedEntity.salesTax" name="salesTax"
                                     optionLabel="value" optionValue="key" id="salesTax" [filter]="true" filterBy="value"></p-dropdown>
@@ -61,14 +65,14 @@
                         <p-dropdown [options]="invoiceTemplateOptions()" [(ngModel)]="selectedEntity.invoiceTemplate" name="template"
                                     optionLabel="value" optionValue="key" id="template" [filter]="true" filterBy="value"></p-dropdown>
                         <label for="paid" class="mt-2">{{ 'invoice.form.label.paid' | translate }}</label>
-                        <p-checkbox id="paid" [ngModel]="selectedEntity.paid" name="paid" [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox id="paid" [(ngModel)]="selectedEntity.paid" name="paid" [binary]="true" inputId="binary"></p-checkbox>
                     </div>
                     @if (selectedEntity.id) {
                         <button pButton type="button" class="btn btn-primary"
-                                (click)="updateInvoice(selectedEntity)">{{ 'invoice.form.button.update' | translate }}
+                                (click)="updateInvoice(selectedEntity)" [disabled]="canBeModified">{{ 'invoice.form.button.update' | translate }}
                         </button>
                         <button pButton type="button" class="btn btn-danger"
-                                (click)="deleteInvoice(selectedEntity)">{{ 'invoice.form.button.delete' | translate }}
+                                (click)="deleteInvoice(selectedEntity)" [disabled]="canBeModified">{{ 'invoice.form.button.delete' | translate }}
                         </button>
                     } @else {
                         <button pButton type="button" class="btn btn-primary"

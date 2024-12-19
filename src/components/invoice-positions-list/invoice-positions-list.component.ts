@@ -11,6 +11,9 @@ import { AuthState } from '../../state/auth-state.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { TitleCasePipe } from '@angular/common';
 import { DropdownItem } from '../../commons/dropdown-item';
+import { InvoiceFacade } from '../../services/invoice/invoice-facade.service';
+import { Invoice } from '../../models/invoice.model';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'im-invoice-positions-list',
@@ -21,14 +24,21 @@ import { DropdownItem } from '../../commons/dropdown-item';
 })
 export class InvoicePositionsListComponent {
     protected invoicePositionFacade = inject(InvoicePositionFacade);
+    private invoiceFacade = inject(InvoiceFacade);
     protected authState = inject(AuthState);
+    private router = inject(Router);
 
-    invoiceId: number | undefined;
+    private invoiceId: number | undefined;
+    private invoice: Invoice | undefined;
 
     @Input() set id(value: number) {
+        if (!value || isNaN(value)) {
+            this.router.navigate(['/invoices']);
+        }
         this.invoiceId = value;
         this.selectedEntity().invoice = value;
         this.invoicePositionFacade.loadInvoicePositions(value);
+        this.invoice = this.invoiceFacade.getInvoiceById(value);
     }
 
     protected readonly selectedEntity: WritableSignal<InvoicePosition> = signal({
@@ -63,6 +73,11 @@ export class InvoicePositionsListComponent {
     protected currentSelectedUnit = computed(() => {
         return this.unitOptions().find((option) => option.key === this.selectedEntity().unit);
     });
+
+    protected canNotBeModified = computed(() => {
+        const paid = this.invoice?.paid;
+        return paid;
+    })
 
     protected setUnitFromDropDown($event: DropdownItem) {
         switch ($event.key) {

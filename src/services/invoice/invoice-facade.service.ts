@@ -2,6 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { InvoiceService } from './invoice.service';
 import { TranslatableMessageService } from '../translatable-message.service';
 import { Invoice } from '../../models/invoice.model';
+import { FileWithContent } from '../../models/file-with-content';
+import { FileService } from '../file/file.service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +11,7 @@ import { Invoice } from '../../models/invoice.model';
 export class InvoiceFacade {
     private invoiceService = inject(InvoiceService);
     private messageService = inject(TranslatableMessageService);
+    private fileService = inject(FileService);
 
     private readonly invoices = signal<Invoice[]>([]);
     getInvoices = this.invoices.asReadonly();
@@ -58,6 +61,35 @@ export class InvoiceFacade {
     }
 
     getInvoiceById(invoiceId: number): Invoice | undefined {
-        return this.getInvoices().find(invoice => invoice.id === invoiceId);
+        // Hier ist das == gewollt, da hier invoiceId ein string sein kann. Ich weiß nicht warum.
+        return this.getInvoices().find(invoice => invoice.id == invoiceId);
+    }
+
+    async generateInvoicePdf(invoiceId: number): Promise<void> {
+        const fileId = await this.invoiceService.generateInvoicePdfById(invoiceId);
+        if (fileId) {
+            this.fileService.downloadFile(fileId).then((fileWithContent: FileWithContent | undefined) => {
+                if (fileWithContent) {
+                    const binary = atob(fileWithContent.content.replace(/\s/g, ''));
+                    const len = binary.length;
+                    const buffer = new ArrayBuffer(len);
+                    const view = new Uint8Array(buffer);
+                    for (let i = 0; i < len; i++) {
+                        view[i] = binary.charCodeAt(i);
+                    }
+                    const blob = new Blob([view], { type: 'application/pdf' });
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileWithContent.name;
+                    a.click();
+                    a.remove();
+                }
+            }).catch((error: any) => {
+                this.messageService.add({ key: 'invoices.generate-pdf-error', severity: 'error' });
+                console.error('Invoice pdf generation error', error);
+            });
+        }
+
     }
 }
