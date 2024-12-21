@@ -21,7 +21,7 @@ export class InvoicePositionFacade {
                 this.invoicePositions.set(invoicePositions);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'invoice-positions.load-error', severity: 'error' });
+            this.messageService.add({ summary: 'invoice-positions.load-error', severity: 'error' });
             console.error('Invoice positions load error', error);
         });
     }

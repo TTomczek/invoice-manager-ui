@@ -22,7 +22,7 @@ export class InvoiceTemplateFacade {
                 this.invoiceTemplates.set(invoiceTemplates);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'error.invoiceTemplates.load', severity: 'error' });
+            this.messageService.add({ summary: 'invoice-templates.error.load', severity: 'error' });
             console.error('Error loading invoice templates', error);
         });
     }
@@ -33,7 +33,7 @@ export class InvoiceTemplateFacade {
                 this.invoiceTemplates.set([...this.getInvoiceTemplates(), createdInvoiceTemplate]);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'error.invoiceTemplate.create', severity: 'error' });
+            this.messageService.add({ summary: 'invoice-templates.error.create', severity: 'error' });
             console.error('Error creating invoice template', error);
         });
     }
@@ -46,7 +46,7 @@ export class InvoiceTemplateFacade {
                 this.invoiceTemplates.set(updatedInvoiceTemplates);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'error.invoiceTemplate.delete', severity: 'error' });
+            this.messageService.add({ summary: 'invoice-templates.error.delete', severity: 'error' });
             console.error('Error deleting invoice template', error);
         });
     }
@@ -61,7 +61,7 @@ export class InvoiceTemplateFacade {
                 this.invoiceTemplates.set(updatedInvoiceTemplates);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'error.invoiceTemplate.update', severity: 'error' });
+            this.messageService.add({ summary: 'invoice-templates.error.update', severity: 'error' });
             console.error('Error updating invoice template', error);
         });
     }
@@ -70,14 +70,20 @@ export class InvoiceTemplateFacade {
         return this.invoiceTemplates().find((invoiceTemplate) => invoiceTemplate.id === invoiceTemplateId);
     }
 
-    async uploadBackgroundPdf(file: File): Promise<number> {
-        return this.fileService.uploadFile(file);
+    async uploadBackgroundPdf(file: File): Promise<number | undefined> {
+        const id = await this.fileService.uploadFile(file);
+        if (id) {
+            return id;
+        } else {
+            this.messageService.add({ summary: 'error.file.upload', severity: 'error' });
+            return undefined;
+        }
     }
 
     downloadBackgroundPdf(fileId: number) {
         this.fileService.downloadFile(fileId).then((fileWithContent: FileWithContent | undefined) => {
             if (!fileWithContent) {
-                this.messageService.add({ key: 'error.file.download', severity: 'error' });
+                this.messageService.add({ summary: 'error.file.download', severity: 'error' });
                 return;
             }
             const binary = atob(fileWithContent.content.replace(/\s/g, ''));

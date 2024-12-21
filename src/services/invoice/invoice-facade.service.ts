@@ -22,7 +22,7 @@ export class InvoiceFacade {
                 this.invoices.set(invoices);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'invoices.load-error', severity: 'error' });
+            this.messageService.add({ summary: 'invoices.load-error', severity: 'error' });
             console.error('Invoices load error', error);
         });
     }
@@ -33,7 +33,7 @@ export class InvoiceFacade {
                 this.invoices.set([...this.getInvoices(), createdInvoice]);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'invoices.create-error', severity: 'error' });
+            this.messageService.add({ summary: 'invoices.create-error', severity: 'error' });
             console.error('Invoice created error', error);
         });
     }
@@ -44,7 +44,7 @@ export class InvoiceFacade {
                 this.invoices.set(this.getInvoices().filter(invoice => invoice.id !== deletedInvoice.id));
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'invoices.delete-error', severity: 'error' });
+            this.messageService.add({ summary: 'invoices.delete-error', severity: 'error' });
             console.error('Invoice deleted error', error);
         });
     }
@@ -55,7 +55,7 @@ export class InvoiceFacade {
                 this.invoices.set(this.getInvoices().map(invoice => invoice.id === updatedInvoice.id ? updatedInvoice : invoice));
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'invoices.update-error', severity: 'error' });
+            this.messageService.add({ summary: 'invoices.update-error', severity: 'error' });
             console.error('Invoice updated error', error);
         });
     }
@@ -86,7 +86,7 @@ export class InvoiceFacade {
                     a.remove();
                 }
             }).catch((error: any) => {
-                this.messageService.add({ key: 'invoices.generate-pdf-error', severity: 'error' });
+                this.messageService.add({ summary: 'invoices.generate-pdf-error', severity: 'error' });
                 console.error('Invoice pdf generation error', error);
             });
         }

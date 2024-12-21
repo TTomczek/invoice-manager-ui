@@ -71,7 +71,9 @@ export class InvoiceTemplateListComponent {
     async createInvoiceTemplate(invoiceTemplate: InvoiceTemplate) {
         if (this.fileToUpload) {
             const backgroundPdfId = await this.invoiceTemplateFacade.uploadBackgroundPdf(this.fileToUpload);
-            invoiceTemplate.backgroundPdf = backgroundPdfId;
+            if (backgroundPdfId) {
+                invoiceTemplate.backgroundPdf = backgroundPdfId;
+            }
         }
         this.invoiceTemplateFacade.createInvoiceTemplate(invoiceTemplate);
         this.unselectEntity();
@@ -81,7 +83,9 @@ export class InvoiceTemplateListComponent {
     async updateInvoiceTemplate(invoiceTemplate: InvoiceTemplate) {
         if (this.fileToUpload) {
             const newBackgroundPdfId = await this.invoiceTemplateFacade.uploadBackgroundPdf(this.fileToUpload);
-            invoiceTemplate.backgroundPdf = newBackgroundPdfId;
+            if (newBackgroundPdfId) {
+                invoiceTemplate.backgroundPdf = newBackgroundPdfId;
+            }
         }
         if (invoiceTemplate.id) {
             this.invoiceTemplateFacade.updateInvoiceTemplate(invoiceTemplate.id, invoiceTemplate);
@@ -104,7 +108,7 @@ export class InvoiceTemplateListComponent {
     downloadTemplate(id: string) {
         const fileId = parseInt(id);
         if (Number.isNaN(fileId)) {
-            this.messageService.add({ key: 'error.invoiceTemplate.download', severity: 'error' });
+            this.messageService.add({ severity: 'error', summary: 'invoiceTemplate.error.download', detail: 'error.invoiceTemplate.nofileid' });
             return;
         }
         this.invoiceTemplateFacade.downloadBackgroundPdf(fileId);

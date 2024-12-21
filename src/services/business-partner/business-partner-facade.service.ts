@@ -20,7 +20,7 @@ export class BusinessPartnerFacade {
                 this.businessPartners.set(businessPartners);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'business-partners.load-error', severity: 'error' });
+            this.messageService.add({ severity: 'error', summary: 'business-partners.load-error' });
             console.error('Business partners load error', error);
         });
     }
@@ -31,7 +31,7 @@ export class BusinessPartnerFacade {
                 this.businessPartners.set([...this.getBusinessPartners(), createdBusinessPartner]);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'business-partners.create-error', severity: 'error' });
+            this.messageService.add({ severity: 'error', summary: 'business-partners.create-error' });
             console.error('Business partner created error', error);
         });
     }
@@ -42,7 +42,7 @@ export class BusinessPartnerFacade {
                 this.businessPartners.set(this.getBusinessPartners().filter(businessPartner => businessPartner.id !== deletedBusinessPartner.id));
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'business-partners.delete-error', severity: 'error' });
+            this.messageService.add({ summary: 'business-partners.delete.error', severity: 'error'});
             console.error('Business partner deleted error', error);
         });
     }
@@ -53,7 +53,7 @@ export class BusinessPartnerFacade {
                 this.businessPartners.set(this.getBusinessPartners().map(businessPartner => businessPartner.id === updatedBusinessPartner.id ? updatedBusinessPartner : businessPartner));
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'business-partners.update-error', severity: 'error' });
+            this.messageService.add({ summary: 'business-partners.update-error', severity: 'error' });
             console.error('Business partner updated error', error);
         });
     }

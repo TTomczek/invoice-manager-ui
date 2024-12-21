@@ -21,7 +21,7 @@ export class ContactPersonFacade {
                 this.contactPersons.set(contactPersons);
             }
         }).catch((error) => {
-            this.messageService.add({ key: 'contact-persons.load-error', severity: 'error' });
+            this.messageService.add({ summary: 'contact-persons.load-error', severity: 'error' });
             console.error('Contact persons load error', error);
         });
     }

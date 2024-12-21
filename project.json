@@ -59,6 +59,17 @@
                             "with": "src/environments/environment.development.ts"
                         }
                     ]
+                },
+                "integration": {
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "fileReplacements": [
+                        {
+                            "replace": "src/environments/environment.ts",
+                            "with": "src/environments/environment.integration.ts"
+                        }
+                    ]
                 }
             },
             "defaultConfiguration": "production"
@@ -71,9 +82,12 @@
                 },
                 "development": {
                     "buildTarget": "invoice-manager-ui:build:development"
+                },
+                "integration": {
+                    "buildTarget": "invoice-manager-ui:build:integration"
                 }
             },
-            "defaultConfiguration": "development",
+            "defaultConfiguration": "integration",
             "options": {
                 "proxyConfig": "proxy.conf.json"
             }

@@ -189,33 +189,33 @@
         }
     },
     "topbar": {
-        "logout": "Abmelden"
+        "logout": "Logout"
     },
     "sidebar": {
         "items": {
             "dashboard": "Dashboard",
             "invoices": "Invoices",
-            "business-partners": "Customers",
-            "invoice-templates": "Templates",
-            "sales-taxes": "Taxes"
+            "business-partners": "Customer",
+            "invoice-templates": "Invoice Templates",
+            "sales-taxes": "Sales Taxes"
         }
     },
     "salestax": {
         "table": {
             "header": {
                 "name": "Name",
-                "rate": "Steuersatz"
+                "rate": "Rate"
             }
         },
         "form": {
             "label": {
                 "name": "Name",
-                "rate": "Steuersatz"
+                "rate": "Rate"
             },
             "button": {
-                "create": "Erstellen",
-                "update": "Aktualisieren",
-                "delete": "Löschen"
+                "create": "Create",
+                "update": "Update",
+                "delete": "Delete"
             }
         }
     },
@@ -223,118 +223,185 @@
         "table": {
             "header": {
                 "name": "Name",
-                "margintopfirst": "Abstand oben (erste Seite) in mm",
-                "marginbottomfirst": "Abstand unten (erste Seite) in mm",
-                "margintopother": "Abstand oben (andere Seiten) in mm",
-                "marginbottomother": "Abstand unten (andere Seiten) in mm"
+                "margintopfirst": "Margin top (first page) in mm",
+                "marginbottomfirst": "Margin bottom (first page) in mm",
+                "margintopother": "Margin top (other pages) in mm",
+                "marginbottomother": "Margin bottom (other pages) in mm"
             }
         },
         "form": {
             "label": {
                 "name": "Name",
-                "margintopfirstpage": "Abstand oben (erste Seite) in mm",
-                "marginbottomfirstpage": "Abstand unten (erste Seite) in mm",
-                "margintopotherpage": "Abstand oben (andere Seiten) in mm",
-                "marginbottomotherpage": "Abstand unten (andere Seiten) in mm",
-                "file": "Hintergrundbild (PDF)"
+                "margintopfirstpage": "Margin top (first page) in mm",
+                "marginbottomfirstpage": "Margin bottom (first page) in mm",
+                "margintopotherpage": "Margin top (other pages) in mm",
+                "marginbottomotherpage": "Margin bottom (other pages) in mm",
+                "file": "File (PDF)"
             },
             "button": {
-                "create": "Erstellen",
-                "update": "Aktualisieren",
-                "delete": "Löschen"
+                "create": "Create",
+                "update": "Update",
+                "delete": "Delete"
             }
         },
         "download": {
-            "btn": "Vorlage herunterladen"
+            "btn": "Download template"
         }
     },
     "businesspartners": {
         "table": {
             "header": {
-                "name": "Kundenname",
-                "description": "Beschreibung",
-                "street": "Straße",
-                "city": "Stadt",
-                "country": "Land",
-                "tocontactpersons": "Ansprechpartner"
+                "name": "Name",
+                "description": "Description",
+                "street": "Street",
+                "city": "City",
+                "country": "Country",
+                "tocontactpersons": "To contact persons"
             }
         },
         "form": {
             "label": {
-                "name": "Kundenname",
-                "description": "Beschreibung"
+                "name": "Name",
+                "description": "Description"
             },
             "button": {
-                "create": "Erstellen",
-                "update": "Aktualisieren",
-                "delete": "Löschen"
+                "create": "Create",
+                "update": "Update",
+                "delete": "Delete"
             }
         }
     },
     "contactpersons": {
         "table": {
             "header": {
-                "firstname": "Vorname",
+                "firstname": "Firstname",
                 "name": "Name",
                 "email": "E-Mail",
-                "street": "Straße",
-                "city": "Stadt",
-                "country": "Land"
+                "street": "Street",
+                "city": "City",
+                "country": "Country"
             }
         },
         "form": {
             "label": {
-                "firstname": "Vorname",
+                "firstname": "Firstname",
                 "name": "Name",
                 "email": "E-Mail",
-                "salutation": "Anrede"
+                "salutation": "Salutation"
             },
             "button": {
-                "create": "Erstellen",
-                "update": "Aktualisieren",
-                "delete": "Löschen"
+                "create": "Create",
+                "update": "Update",
+                "delete": "Delete"
             }
         }
     },
-    "invoice": {
+    "invoices": {
         "table": {
             "header": {
+                "paid": "Paid",
                 "description": "Description",
-                "ordernumber": "Order Number",
-                "positioncount": "Position Count",
-                "topositions": "Positions"
+                "ordernumber": "Order number",
+                "positioncount": "Position count",
+                "topositions": "To positions",
+                "generatepdf": "Generate PDF"
             }
         },
         "form": {
             "label": {
-                "ordernumber": "Bestellnummer",
-                "description": "Beschreibung",
-                "pretext": "Vorwort",
-                "posttext": "Nachwort",
-                "servicefrom": "Leistungszeitraum von",
-                "serviceto": "Leistungszeitraum bis",
-                "permail": "Per E-Mail",
-                "partner": "Kunde",
-                "contact": "Ansprechpartner",
-                "salestax": "Steuersatz",
-                "template": "Vorlage"
+                "ordernumber": "Order number",
+                "description": "Description",
+                "pretext": "Pretext",
+                "posttext": "Posttext",
+                "servicefrom": "Service period from",
+                "serviceto": "Service period to",
+                "permail": "Via E-Mail",
+                "partner": "Customer",
+                "contact": "Contact person",
+                "salestax": "Sales tax",
+                "template": "Template",
+                "paid": "Paid"
             },
             "button": {
-                "create": "Erstellen",
-                "update": "Aktualisieren",
-                "delete": "Löschen"
+                "create": "Create",
+                "update": "Update",
+                "delete": "Delete"
             }
-        }
+        },
+        "load-error": "Error loading invoices",
+        "delete-error": "Error deleting invoice",
+        "create-error": "Error creating invoice",
+        "update-error": "Error updating invoice",
+        "invoices.generate-pdf-error": "Error generating PDF"
+    },
+    "invoiceposition": {
+        "table": {
+            "header": {
+                "description": "Description",
+                "quantity": "Quantity",
+                "price": "Price",
+                "unit": "Unit"
+            }
+        },
+        "form": {
+            "label": {
+                "description": "Description",
+                "quantity": "Quantity",
+                "price": "Price",
+                "unit": "Unit"
+            },
+            "button": {
+                "create": "Create",
+                "update": "Update",
+                "delete": "Delete"
+            }
+        },
+        "load-error": "Error loading positions",
+        "delete-error": "Error deleting position",
+        "create-error": "Error creating position",
+        "update-error": "Error updating position"
     },
     "address": {
         "form": {
             "label": {
-                "street": "Straße",
-                "city": "Stadt",
-                "zipcode": "PLZ",
-                "country": "Land",
-                "housenumber": "Hausnummer"
+                "street": "Street",
+                "city": "City",
+                "zipcode": "postal code",
+                "country": "Country",
+                "housenumber": "House number"
             }
+        }
+    },
+    "business-partners": {
+        "load-error": "Error loading customers",
+        "delete-error": "Error deleting customer",
+        "create-error": "Error creating customer",
+        "update-error": "Error updating customer"
+    },
+    "contact-persons": {
+        "load-error": "Error loading contact persons",
+        "delete-error": "Error deleting contact person",
+        "create-error": "Error creating contact person",
+        "update-error": "Error updating contact person"
+    },
+    "sales-taxes": {
+        "load-error": "Error loading sales taxes",
+        "delete-error": "Error deleting sales tax",
+        "create-error": "Error creating sales tax",
+        "update-error": "Error updating sales tax"
+    },
+    "invoice-templates": {
+        "error": {
+            "load": "Error loading invoice templates",
+            "delete": "Error deleting invoice template",
+            "create": "Error creating invoice template",
+            "update": "Error updating invoice template"
+        }
+    },
+    "error": {
+        "file": {
+            "upload": "Error uploading file",
+            "download": "Error downloading file"
         }
     }
 }

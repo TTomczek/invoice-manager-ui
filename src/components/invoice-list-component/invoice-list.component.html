@@ -6,12 +6,12 @@
                      selectionMode="single" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>{{ 'invoice.table.header.paid' | translate }}</th>
-                        <th>{{ 'invoice.table.header.description' | translate }}</th>
-                        <th>{{ 'invoice.table.header.ordernumber' | translate }}</th>
-                        <th>{{ 'invoice.table.header.positioncount' | translate }}</th>
-                        <th>{{ 'invoice.table.header.topositions' | translate }}</th>
-                        <th>{{ 'invoice.table.header.generatepdf' | translate }}</th>
+                        <th>{{ 'invoices.table.header.paid' | translate }}</th>
+                        <th>{{ 'invoices.table.header.description' | translate }}</th>
+                        <th>{{ 'invoices.table.header.ordernumber' | translate }}</th>
+                        <th>{{ 'invoices.table.header.positioncount' | translate }}</th>
+                        <th>{{ 'invoices.table.header.topositions' | translate }}</th>
+                        <th>{{ 'invoices.table.header.generatepdf' | translate }}</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-invoice>
@@ -30,53 +30,53 @@
             <div class="card col-12">
                 <form class="col-12">
                     <div class="flex flex-column gap-2 mb-4">
-                        <label for="ordernumber" class="mt-2">{{ 'invoice.form.label.ordernumber' | translate }}</label>
+                        <label for="ordernumber" class="mt-2">{{ 'invoices.form.label.ordernumber' | translate }}</label>
                         <input pInputText type="text" class="form-control" id="ordernumber" [(ngModel)]="selectedEntity.orderNumber"
                                name="ordernumber"
                                required>
-                        <label for="description" class="mt-2">{{ 'invoice.form.label.description' | translate }}</label>
+                        <label for="description" class="mt-2">{{ 'invoices.form.label.description' | translate }}</label>
                         <input pInputText type="text" class="form-control" id="description"
                                [(ngModel)]="selectedEntity.description"
                                name="description" required>
-                        <label for="preText" class="mt-2">{{ 'invoice.form.label.pretext' | translate }}</label>
+                        <label for="preText" class="mt-2">{{ 'invoices.form.label.pretext' | translate }}</label>
                         <textarea pInputTextarea class="form-control" id="preText" [(ngModel)]="selectedEntity.preText"
                                   name="preText" required></textarea>
-                        <label for="postText" class="mt-2">{{ 'invoice.form.label.posttext' | translate }}</label>
+                        <label for="postText" class="mt-2">{{ 'invoices.form.label.posttext' | translate }}</label>
                         <textarea pInputTextarea class="form-control" id="postText" [(ngModel)]="selectedEntity.postText"
                                   name="postText" required></textarea>
-                        <label for="serviceProvidedFrom" class="mt-2">{{ 'invoice.form.label.servicefrom' | translate }}</label>
+                        <label for="serviceProvidedFrom" class="mt-2">{{ 'invoices.form.label.servicefrom' | translate }}</label>
                         <p-calendar id="serviceProvidedFrom" [(ngModel)]="selectedEntity.serviceProvidedFrom"
                                     name="serviceProvidedFrom" required></p-calendar>
-                        <label for="serviceProvidedTo" class="mt-2">{{ 'invoice.form.label.serviceto' | translate }}</label>
+                        <label for="serviceProvidedTo" class="mt-2">{{ 'invoices.form.label.serviceto' | translate }}</label>
                         <p-calendar id="serviceProvidedTo" [(ngModel)]="selectedEntity.serviceProvidedTo"
                                     name="serviceProvidedTo" required></p-calendar>
-                        <label for="perMail" class="mt-2">{{ 'invoice.form.label.permail' | translate }}</label>
+                        <label for="perMail" class="mt-2">{{ 'invoices.form.label.permail' | translate }}</label>
                         <p-checkbox id="perMail" [(ngModel)]="selectedEntity.perMail" name="perMail" [binary]="true" inputId="binary"></p-checkbox>
-                        <label for="salesTax" class="mt-2">{{ 'invoice.form.label.salestax' | translate }}</label>
+                        <label for="salesTax" class="mt-2">{{ 'invoices.form.label.salestax' | translate }}</label>
                         <p-dropdown [options]="salesTaxOptions()" [(ngModel)]="selectedEntity.salesTax" name="salesTax"
                                     optionLabel="value" optionValue="key" id="salesTax" [filter]="true" filterBy="value"></p-dropdown>
-                        <label for="partner" class="mt-2">{{ 'invoice.form.label.partner' | translate }}</label>
+                        <label for="partner" class="mt-2">{{ 'invoices.form.label.partner' | translate }}</label>
                         <p-dropdown [options]="businessPartnerOptions()" [ngModel]="selectedEntity.customer" (ngModelChange)="changeBusinessPartner($event)" name="partner"
                                     optionLabel="value" optionValue="key" id="partner" [filter]="true" filterBy="value"></p-dropdown>
-                        <label for="contact" class="mt-2">{{ 'invoice.form.label.contact' | translate }}</label>
+                        <label for="contact" class="mt-2">{{ 'invoices.form.label.contact' | translate }}</label>
                         <p-dropdown [options]="contactPersonOptions()" [(ngModel)]="selectedEntity.receiver" name="contact"
                                     optionLabel="value" optionValue="key" id="contact" [filter]="true" filterBy="value"></p-dropdown>
-                        <label for="template" class="mt-2">{{ 'invoice.form.label.template' | translate }}</label>
+                        <label for="template" class="mt-2">{{ 'invoices.form.label.template' | translate }}</label>
                         <p-dropdown [options]="invoiceTemplateOptions()" [(ngModel)]="selectedEntity.invoiceTemplate" name="template"
                                     optionLabel="value" optionValue="key" id="template" [filter]="true" filterBy="value"></p-dropdown>
-                        <label for="paid" class="mt-2">{{ 'invoice.form.label.paid' | translate }}</label>
+                        <label for="paid" class="mt-2">{{ 'invoices.form.label.paid' | translate }}</label>
                         <p-checkbox id="paid" [(ngModel)]="selectedEntity.paid" name="paid" [binary]="true" inputId="binary"></p-checkbox>
                     </div>
                     @if (selectedEntity.id) {
                         <button pButton type="button" class="btn btn-primary mr-1" name="update"
-                                (click)="updateInvoice(selectedEntity)" [disabled]="modifiable">{{ 'invoice.form.button.update' | translate }}
+                                (click)="updateInvoice(selectedEntity)" [disabled]="modifiable">{{ 'invoices.form.button.update' | translate }}
                         </button>
                         <button pButton type="button" class="btn btn-danger" name="delete"
-                                (click)="deleteInvoice(selectedEntity)" [disabled]="!deleteable">{{ 'invoice.form.button.delete' | translate }}
+                                (click)="deleteInvoice(selectedEntity)" [disabled]="!deleteable">{{ 'invoices.form.button.delete' | translate }}
                         </button>
                     } @else {
                         <button pButton type="button" class="btn btn-primary" name="create"
-                                (click)="createInvoice(selectedEntity)">{{ 'invoice.form.button.create' | translate }}
+                                (click)="createInvoice(selectedEntity)">{{ 'invoices.form.button.create' | translate }}
                         </button>
                     }
                 </form>

@@ -296,7 +296,7 @@
             }
         }
     },
-    "invoice": {
+    "invoices": {
         "table": {
             "header": {
                 "paid": "Bezahlt",
@@ -327,7 +327,12 @@
                 "update": "Aktualisieren",
                 "delete": "Löschen"
             }
-        }
+        },
+        "load-error": "Fehler beim Laden der Rechnungen",
+        "delete-error": "Fehler beim Löschen der Rechnung",
+        "create-error": "Fehler beim Erstellen der Rechnung",
+        "update-error": "Fehler beim Aktualisieren der Rechnung",
+        "invoices.generate-pdf-error": "Fehler beim Generieren der PDF-Datei"
     },
     "invoiceposition": {
         "table": {
@@ -350,7 +355,11 @@
                 "update": "Aktualisieren",
                 "delete": "Löschen"
             }
-        }
+        },
+        "load-error": "Fehler beim Laden der Positionen",
+        "delete-error": "Fehler beim Löschen der Position",
+        "create-error": "Fehler beim Erstellen der Position",
+        "update-error": "Fehler beim Aktualisieren der Position"
     },
     "address": {
         "form": {
@@ -361,6 +370,38 @@
                 "country": "Land",
                 "housenumber": "Hausnummer"
             }
+        }
+    },
+    "business-partners": {
+        "load-error": "Fehler beim Laden der Kunden",
+        "delete-error": "Fehler beim Löschen des Kunden",
+        "create-error": "Fehler beim Erstellen des Kunden",
+        "update-error": "Fehler beim Aktualisieren des Kunden"
+    },
+    "contact-persons": {
+        "load-error": "Fehler beim Laden der Ansprechpartner",
+        "delete-error": "Fehler beim Löschen des Ansprechpartners",
+        "create-error": "Fehler beim Erstellen des Ansprechpartners",
+        "update-error": "Fehler beim Aktualisieren des Ansprechpartners"
+    },
+    "sales-taxes": {
+        "load-error": "Fehler beim Laden der Steuersätze",
+        "delete-error": "Fehler beim Löschen des Steuersatzes",
+        "create-error": "Fehler beim Erstellen des Steuersatzes",
+        "update-error": "Fehler beim Aktualisieren des Steuersatzes"
+    },
+    "invoice-templates": {
+        "error": {
+            "load": "Fehler beim Laden der Rechnungsvorlagen",
+            "delete": "Fehler beim Löschen der Rechnungsvorlage",
+            "create": "Fehler beim Erstellen der Rechnungsvorlage",
+            "update": "Fehler beim Aktualisieren der Rechnungsvorlage"
+        }
+    },
+    "error": {
+        "file": {
+            "upload": "Fehler beim Hochladen der Datei",
+            "download": "Fehler beim Herunterladen der Datei"
         }
     }
 }

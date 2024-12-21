@@ -19,7 +19,7 @@ export class SalesTaxFacade {
             this.salesTaxes.set(salesTaxes);
         }
     }).catch((error) => {
-        this.messageService.add({ key: 'sales-taxes.load-error', severity: 'error' });
+        this.messageService.add({ summary: 'sales-taxes.load-error', severity: 'error' });
         console.error('Sales taxes load error', error);
     });
   }
@@ -30,7 +30,7 @@ export class SalesTaxFacade {
             this.salesTaxes.set([...this.getSalesTaxes(), createdSalesTax]);
         }
     }).catch((error) => {
-        this.messageService.add({ key: 'sales-taxes.create-error', severity: 'error' });
+        this.messageService.add({ summary: 'sales-taxes.create-error', severity: 'error' });
         console.error('Sales tax created error', error);
     });
   }
@@ -41,7 +41,7 @@ export class SalesTaxFacade {
             this.salesTaxes.set(this.getSalesTaxes().filter(salesTax => salesTax.id !== deletedSalesTax.id));
         }
     }).catch((error) => {
-        this.messageService.add({ key: 'sales-taxes.delete-error', severity: 'error' });
+        this.messageService.add({ summary: 'sales-taxes.delete-error', severity: 'error' });
         console.error('Sales tax deleted error', error);
     });
   }
@@ -52,7 +52,7 @@ export class SalesTaxFacade {
             this.salesTaxes.set(this.getSalesTaxes().map(salesTax => salesTax.id === updatedSalesTax.id ? updatedSalesTax : salesTax));
         }
     }).catch((error) => {
-        this.messageService.add({ key: 'sales-taxes.update-error', severity: 'error' });
+        this.messageService.add({ summary: 'sales-taxes.update-error', severity: 'error' });
         console.error('Sales tax updated error', error);
     });
   }

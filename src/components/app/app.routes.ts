@@ -9,7 +9,7 @@ import { ContactPersonListComponent } from '../contact-person-list/contact-perso
 import { InvoicePositionsListComponent } from '../invoice-positions-list/invoice-positions-list.component';
 
 export const appRoutes: Route[] = [
-   {
+    {
         path: '',
         component: IMLayoutComponent,
         children: [
@@ -19,32 +19,32 @@ export const appRoutes: Route[] = [
             },
             {
                 path: 'invoices/:id/positions',
-                component: InvoicePositionsListComponent,
+                component: InvoicePositionsListComponent
             },
             {
                 path: 'business-partners',
-                component: BusinessPartnersListComponent,
+                component: BusinessPartnersListComponent
             },
             {
                 path: 'business-partners/:id/contact-persons',
-                component: ContactPersonListComponent,
+                component: ContactPersonListComponent
             },
             {
                 path: 'invoice-templates',
-                component: InvoiceTemplateListComponent,
+                component: InvoiceTemplateListComponent
             },
             {
                 path: 'sales-taxes',
-                component: SalesTaxListComponent,
-            },
-        ],
+                component: SalesTaxListComponent
+            }
+        ]
     },
     {
         path: 'notfound',
-        component: IMNotfoundComponent,
+        component: IMNotfoundComponent
     },
     {
         path: '**',
-        redirectTo: '/notfound',
-    },
+        redirectTo: '/notfound'
+    }
 ];
