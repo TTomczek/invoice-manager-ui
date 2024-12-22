@@ -15,7 +15,7 @@ export class AuthenticationImplService implements AuthenticationService {
         redirectUri: window.location.origin + '/index.html',
         clientId: 'angular-client',
         responseType: 'code',
-        scope: 'openid profile email offline_access',
+        scope: 'openid profile email offline_access roles',
     };
 
     public init(): void {
