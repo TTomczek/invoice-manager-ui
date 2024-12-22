@@ -6,6 +6,7 @@ import { ContactPersonImplService } from '../services/contact-person/contact-per
 import { InvoiceImplService } from '../services/invoice/invoice-impl.service';
 import { InvoicePositionImplService } from '../services/invoice-position/invoice-position-impl.service';
 import { AuthenticationMockService } from '../services/authentification/authentication-mock.service';
+import { MockAuthInterceptor } from '../services/authentification/mock-auth-interceptor.service';
 
 export const environment = {
     production: false,
@@ -18,5 +19,6 @@ export const environment = {
     businessPartnersService: BusinessPartnerImplService,
     contactPersonService: ContactPersonImplService,
     invoiceService: InvoiceImplService,
-    invoicePositionService: InvoicePositionImplService
+    invoicePositionService: InvoicePositionImplService,
+    authInterceptor: MockAuthInterceptor
 };

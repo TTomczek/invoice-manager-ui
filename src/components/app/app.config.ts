@@ -1,8 +1,12 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withHashLocation } from '@angular/router';
+import {
+    provideRouter,
+    withComponentInputBinding,
+    withHashLocation
+} from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { AuthenticationService } from '../../services/authentification/authentication.service';
 import { environment } from '../../environments/environment';
@@ -71,6 +75,10 @@ export function provideIMServices() {
         {
             provide: InvoicePositionService,
             useClass: environment.invoicePositionService,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: environment.authInterceptor,
         }
     ];
 }

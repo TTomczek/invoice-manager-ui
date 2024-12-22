@@ -6,6 +6,7 @@ import { BusinessPartnerImplService } from '../services/business-partner/busines
 import { ContactPersonImplService } from '../services/contact-person/contact-person-impl.service';
 import { InvoiceImplService } from '../services/invoice/invoice-impl.service';
 import { InvoicePositionImplService } from '../services/invoice-position/invoice-position-impl.service';
+import { AuthInterceptor } from '../services/authentification/auth-interceptor-service';
 
 export const environment = {
     production: false,
@@ -18,5 +19,6 @@ export const environment = {
     businessPartnersService: BusinessPartnerImplService,
     contactPersonService: ContactPersonImplService,
     invoiceService: InvoiceImplService,
-    invoicePositionService: InvoicePositionImplService
+    invoicePositionService: InvoicePositionImplService,
+    authInterceptor: AuthInterceptor
 };

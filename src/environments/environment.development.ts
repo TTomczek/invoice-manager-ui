@@ -6,6 +6,7 @@ import { DefaultBusinessPartnerService } from '../services/business-partner/defa
 import { DefaultContactPersonService } from '../services/contact-person/default-contact-person.service';
 import { DefaultInvoiceService } from '../services/invoice/default-invoice.service';
 import { DefaultInvoicePositionService } from '../services/invoice-position/default-invoice-position.service';
+import { MockAuthInterceptor } from '../services/authentification/mock-auth-interceptor.service';
 
 // TODO Switch back to Default Services
 export const environment = {
@@ -19,5 +20,6 @@ export const environment = {
     businessPartnersService: DefaultBusinessPartnerService,
     contactPersonService: DefaultContactPersonService,
     invoiceService: DefaultInvoiceService,
-    invoicePositionService: DefaultInvoicePositionService
+    invoicePositionService: DefaultInvoicePositionService,
+    authInterceptor: MockAuthInterceptor
 };
