@@ -11,7 +11,7 @@ import { AuthInterceptor } from '../services/authentification/auth-interceptor-s
 export const environment = {
     production: false,
     authenticationProvider: AuthenticationImplService,
-    basePath: '/invoice-manager-server',
+    basePath: '',
     maxFileSize: 1048576 * 5, // 5MB
     salesTaxService: SalesTaxImplService,
     invoiceTemplateService: InvoiceTemplateImplService,

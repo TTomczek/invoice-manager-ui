@@ -8,11 +8,10 @@ import { DefaultInvoiceService } from '../services/invoice/default-invoice.servi
 import { DefaultInvoicePositionService } from '../services/invoice-position/default-invoice-position.service';
 import { MockAuthInterceptor } from '../services/authentification/mock-auth-interceptor.service';
 
-// TODO Switch back to Default Services
 export const environment = {
     production: false,
     authenticationProvider: AuthenticationMockService,
-    basePath: '/invoice-manager-server',
+    basePath: '',
     maxFileSize: 1048576 * 5, // 5MiB
     salesTaxService: DefaultSalesTaxService,
     invoiceTemplateService: DefaultInvoiceTemplateService,

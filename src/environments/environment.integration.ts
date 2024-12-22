@@ -11,7 +11,7 @@ import { MockAuthInterceptor } from '../services/authentification/mock-auth-inte
 export const environment = {
     production: false,
     authenticationProvider: AuthenticationMockService,
-    basePath: '/invoice-manager-server',
+    basePath: '',
     maxFileSize: 1048576 * 5, // 5MB
     salesTaxService: SalesTaxImplService,
     invoiceTemplateService: InvoiceTemplateImplService,
