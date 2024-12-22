@@ -79,6 +79,7 @@ export function provideIMServices() {
         {
             provide: HTTP_INTERCEPTORS,
             useClass: environment.authInterceptor,
+            multi: true,
         }
     ];
 }
