@@ -22,7 +22,7 @@
     "@fullcalendar/daygrid": "^6.0.3",
     "@fullcalendar/interaction": "^6.0.3",
     "@fullcalendar/timegrid": "^6.0.3",
-    "@invoice-manager/api-typescript-angular-client": "file:../invoice-manager-api/invoice-manager-api-typescript-angular-client/target/generated-sources/openapi/dist/invoice-manager-api-typescript-angular-client-1.0.0-SNAPSHOT.tgz",
+    "@invoice-manager/api-typescript-angular-client": "file:invoice-manager-api-typescript-angular-client-1.0.0-SNAPSHOT.tgz",
     "@ngx-translate/core": "^16.0.3",
     "angular-oauth2-oidc": "^17.0.2",
     "chart.js": "^3.3.2",
