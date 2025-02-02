@@ -11,6 +11,11 @@ import { InvoicePositionsListComponent } from '../invoice-positions-list/invoice
 export const appRoutes: Route[] = [
     {
         path: '',
+        redirectTo: 'invoices',
+        pathMatch: 'full'
+    },
+    {
+        path: '',
         component: IMLayoutComponent,
         children: [
             {
